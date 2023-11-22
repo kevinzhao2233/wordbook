@@ -1,0 +1,59 @@
+html,
+body,
+#app,
+#root {
+  height: 100%;
+  color: #171725;
+}
+
+html body {
+  font: 14px/1.5715 -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', MiSans, 'Microsoft YaHei', sans-serif;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 5px;
+}
+
+/* 滚动条滑块，只有鼠标 hover 之后才显示出来 */
+*:hover::-webkit-scrollbar-thumb {
+  background:rgb(0 0 0 / 0.08);
+}
+
+.ant-layout.layout-basic {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.svg-icon {
+  display: inline-block;
+  font-style: normal;
+  line-height: 0;
+  color: inherit;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+@font-face {
+  font-family: AlimamaShuHeiTi-Bold;
+  src:
+    url(../assets/fonts/AlimamaShuHeiTi-Bold/AlimamaShuHeiTi-Bold.woff2) format('woff2'),
+    url(../assets/fonts/AlimamaShuHeiTi-Bold/AlimamaShuHeiTi-Bold.woff) format('woff'),
+    url(../assets/fonts/AlimamaShuHeiTi-Bold/AlimamaShuHeiTi-Bold.ttf) format('ttf'),
+    url(../assets/fonts/AlimamaShuHeiTi-Bold/AlimamaShuHeiTi-Bold.otf) format('otf');
+}
