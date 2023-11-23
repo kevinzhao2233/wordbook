@@ -1,0 +1,1562 @@
+﻿1
+00:00:00,000 --> 00:00:10,000
+
+2
+00:00:03,820 --> 00:00:06,600
+okay,we've got power to the laser.
+
+3
+00:00:06,760 --> 00:00:09,250
+i should've brought an umbrella.
+
+4
+00:00:09,390 --> 00:00:10,440
+what for?it's not going to rain.
+
+5
+00:00:10,600 --> 00:00:16,630
+i know that,but with skin as fair as mine,moon burn is a real possibility.
+
+6
+00:00:16,780 --> 00:00:18,620
+that's a "bazinga," right?
+
+7
+00:00:18,760 --> 00:00:21,300
+one of my best,don't you think?
+
+8
+00:00:23,770 --> 00:00:26,550
+howard,do you want to double-check the equatorial mount on the laser?
+
+9
+00:00:26,690 --> 00:00:28,470
+we need it locked onto the sea of tranquility.
+
+10
+00:00:28,630 --> 00:00:30,060
+you got it.
+
+11
+00:00:30,200 --> 00:00:31,950
+oh,raj,no.
+
+12
+00:00:32,100 --> 00:00:36,860
+billions of dollars have gone into inventing the internet and filling it with pictures of naked women,
+
+13
+00:00:37,010 --> 00:00:40,050
+so we don't have to peep through windows.
+
+14
+00:00:40,210 --> 00:00:40,760
+it's not like that.
+
+15
+00:00:40,930 --> 00:00:42,220
+i'm watching someone's tv.
+
+16
+00:00:42,380 --> 00:00:45,420
+the good wifeis on.
+
+17
+00:00:45,580 --> 00:00:50,010
+i tell you,this is my newgrey's anatomy.
+
+18
+00:00:50,180 --> 00:00:50,860
+leonard,leonard.
+
+19
+00:00:51,020 --> 00:00:53,250
+what is that?what is that?
+
+20
+00:00:53,410 --> 00:00:55,960
+relax,it's just a dirty sock.
+
+21
+00:00:56,130 --> 00:01:01,060
+how on earth can you say "dirty sock" and "relax" in the same sentence?
+
+22
+00:01:01,200 --> 00:01:05,560
+sheldon,the world is filled with dirty discarded socks.
+
+23
+00:01:05,700 --> 00:01:08,630
+not my world.
+
+24
+00:01:08,760 --> 00:01:11,840
+g bang theory hey,you know who'd really dig seeing this experiment?penny.
+
+25
+00:01:12,010 --> 00:01:15,120
+i wasn't aware that lunar ranging was her thing.
+
+26
+00:01:15,280 --> 00:01:22,460
+although,i suppose the retro-reflector left on the moon by neil armstrong does qualify as a shiny object.
+
+27
+00:01:22,640 --> 00:01:23,960
+why don't you ask her to come up?
+
+28
+00:01:24,110 --> 00:01:26,370
+i don't know,it's still a little weird since,you know...
+
+29
+00:01:26,520 --> 00:01:27,530
+she dumped you?
+
+30
+00:01:27,680 --> 00:01:28,490
+she didn't dump me.
+
+31
+00:01:28,650 --> 00:01:30,790
+we were just in different places in the relationship.
+
+32
+00:01:30,930 --> 00:01:35,970
+i fail to see how a relationship can have the qualities of a geographic location.
+
+33
+00:01:36,110 --> 00:01:36,970
+oh,it's very simple.
+
+34
+00:01:37,150 --> 00:01:40,280
+leonard was living in a little town called "please don'oryt leave me"
+
+35
+00:01:40,450 --> 00:01:46,170
+while penny had just moved to the island of "buh-bye.
+
+36
+00:01:47,330 --> 00:01:47,990
+" screw you guys.
+
+37
+00:01:48,170 --> 00:01:50,540
+i'm gonna go see if she's home.
+
+38
+00:01:50,690 --> 00:01:54,070
+if it's not too much trouble,i'd like to point this at the moon now.
+
+39
+00:01:54,230 --> 00:01:54,760
+wait a second.
+
+40
+00:01:54,930 --> 00:01:57,630
+the good wife is crying.
+
+41
+00:01:57,770 --> 00:02:00,430
+something's very wrong.
+
+42
+00:02:19,470 --> 00:02:21,780
+the.big.bang.theory.
+Season 03 Episode 23
+
+43
+00:02:29,140 --> 00:02:30,520
+oh,hi.what's going on?
+
+44
+00:02:30,690 --> 00:02:33,960
+we're up on the roof bouncing laser beams off the moon.
+
+45
+00:02:34,150 --> 00:02:35,630
+i'm sorry,what?
+
+46
+00:02:35,780 --> 00:02:36,440
+it's pretty cool.
+
+47
+00:02:36,610 --> 00:02:38,550
+we've got a two-meter parabolic reflector and everything.
+
+48
+00:02:38,690 --> 00:02:39,940
+i thought you might want to see it.
+
+49
+00:02:40,090 --> 00:02:42,000
+man: that makes no sense.
+
+50
+00:02:42,430 --> 00:02:44,320
+how can you bounce stuff off the moon?
+
+51
+00:02:44,470 --> 00:02:47,040
+there's no gravity.
+
+52
+00:02:48,000 --> 00:02:49,280
+penny: uh,leonard,this is zack.
+
+53
+00:02:49,440 --> 00:02:50,430
+zack,leonard.
+
+54
+00:02:50,720 --> 00:02:52,020
+oh,sorry,i didn't know you were busy.
+
+55
+00:02:52,180 --> 00:02:53,660
+- maybe another time.
+- yeah,maybe.
+
+56
+00:02:53,830 --> 00:02:55,150
+hey,i want to see this laser thing.
+
+57
+00:02:55,310 --> 00:02:57,080
+oh,but what about the party?
+
+58
+00:02:57,230 --> 00:03:00,690
+it's a surprise party-- doesn't matter when we get there.
+
+59
+00:03:01,340 --> 00:03:02,640
+right.
+
+60
+00:03:03,350 --> 00:03:06,860
+okay,well,yeah,come on up.
+
+61
+00:03:11,270 --> 00:03:12,900
+so,how'd you guys meet?
+
+62
+00:03:13,070 --> 00:03:16,410
+my company designs the menus for the cheesecake factory.
+
+63
+00:03:16,570 --> 00:03:17,230
+your company?
+
+64
+00:03:17,390 --> 00:03:20,810
+well,my dad.but me and my sister are vps.
+
+65
+00:03:21,030 --> 00:03:22,340
+so...
+
+66
+00:03:22,500 --> 00:03:23,670
+menus.
+
+67
+00:03:23,800 --> 00:03:30,140
+i know it sounds easy,but there's a lot of science that goes into designing them.
+
+68
+00:03:33,260 --> 00:03:33,960
+happy now?
+
+69
+00:03:34,130 --> 00:03:36,850
+i'm moving the dirty sock.
+
+70
+00:03:38,200 --> 00:03:39,900
+thank you.
+
+71
+00:03:40,170 --> 00:03:43,140
+raj,keep an eye out for the other one.
+
+72
+00:03:43,540 --> 00:03:45,980
+hey,guys,this is my friend zack.
+
+73
+00:03:47,370 --> 00:03:48,670
+is that the laser?
+
+74
+00:03:48,840 --> 00:03:51,190
+it's bitchin'.
+
+75
+00:03:51,380 --> 00:03:52,120
+yes.
+
+76
+00:03:52,300 --> 00:03:56,630
+in 1917,when albert einstein established the theoretic foundation
+
+77
+00:03:56,800 --> 00:03:59,890
+for the laser in his paper "zur quantentheorie der strahlung,
+
+78
+00:04:00,050 --> 00:04:05,890
+"his fondest hope was that the resultant device be bitchin'.
+
+79
+00:04:06,030 --> 00:04:08,760
+well,mission accomplished.
+
+80
+00:04:10,150 --> 00:04:11,840
+let me explain what we're doing here.
+
+81
+00:04:12,020 --> 00:04:16,700
+um,in 1969,the astronauts onapollo 11 positioned reflectors on the surface of the moon,
+
+82
+00:04:16,850 --> 00:04:18,700
+and we're going to shoot a laser off one of them
+
+83
+00:04:18,860 --> 00:04:22,470
+and let the light bounce back into this photomultiplier.
+
+84
+00:04:22,600 --> 00:04:23,740
+that's very cool.
+
+85
+00:04:23,890 --> 00:04:25,070
+zack: one question.
+
+86
+00:04:25,210 --> 00:04:28,110
+how can you be sure it won't blow up?
+
+87
+00:04:28,280 --> 00:04:29,010
+the laser?
+
+88
+00:04:29,190 --> 00:04:31,320
+the moon.
+
+89
+00:04:33,130 --> 00:04:36,980
+see,now this is a man for penny.
+
+90
+00:04:37,120 --> 00:04:39,320
+that's a great question,zack.
+
+91
+00:04:39,500 --> 00:04:40,180
+no,it's not.
+
+92
+00:04:40,380 --> 00:04:41,350
+penny: sheldon!
+
+93
+00:04:41,520 --> 00:04:42,150
+play nice.
+
+94
+00:04:42,330 --> 00:04:43,530
+it's not a great question.
+
+95
+00:04:43,720 --> 00:04:48,460
+how could somebody possibly think we're going to blow up the moon?
+
+96
+00:04:48,610 --> 00:04:50,910
+that'sa great question.
+
+97
+00:04:52,040 --> 00:04:53,050
+don't worry about the moon.
+
+98
+00:04:53,200 --> 00:04:56,170
+we-we set our laser to stun.
+
+99
+00:04:56,330 --> 00:04:57,850
+smart.
+
+100
+00:04:58,150 --> 00:05:00,040
+now,we'll be able to see the beam when it leaves,
+
+101
+00:05:00,190 --> 00:05:03,100
+but it won't be strong enough when it comes back to be seen by the naked eye.
+
+102
+00:05:03,300 --> 00:05:05,150
+naked.
+
+103
+00:05:09,510 --> 00:05:10,470
+right.
+
+104
+00:05:10,710 --> 00:05:12,090
+funny.
+
+105
+00:05:12,290 --> 00:05:16,880
+uh,that device,there,will measure the photons that return and let us see it on this computer.
+
+106
+00:05:17,050 --> 00:05:19,110
+raj,get them some glasses.
+
+107
+00:05:19,270 --> 00:05:22,590
+cool,it's gonna be in 3-d?
+
+108
+00:05:27,260 --> 00:05:30,030
+preparing to fire laser at the moon.
+
+109
+00:05:30,190 --> 00:05:32,140
+make it so.
+
+110
+00:05:36,050 --> 00:05:36,650
+there it is.
+
+111
+00:05:36,850 --> 00:05:38,440
+there's the spike!
+
+112
+00:05:38,600 --> 00:05:40,060
+2.5 seconds for the light to return.
+
+113
+00:05:40,220 --> 00:05:40,860
+that's the moon!
+
+114
+00:05:41,030 --> 00:05:42,600
+we hit the moon!
+
+115
+00:05:45,680 --> 00:05:47,910
+that's your big experiment?
+
+116
+00:05:48,060 --> 00:05:49,970
+all that for a line on the screen?
+
+117
+00:05:50,140 --> 00:05:53,210
+leonard: yeah,but,uh,think about what this represents.
+
+118
+00:05:53,360 --> 00:05:56,570
+the fact that we can do this is the only way of definitively proving that
+
+119
+00:05:56,730 --> 00:05:58,900
+there are man-made objects on the moon,
+
+120
+00:05:59,060 --> 00:06:04,010
+put there by a member of a species that only 60 years before had just invented the airplane.
+
+121
+00:06:04,170 --> 00:06:06,840
+what species is that?
+
+122
+00:06:08,740 --> 00:06:09,850
+i was wrong.
+
+123
+00:06:09,990 --> 00:06:11,730
+penny can do better.
+
+124
+00:06:11,870 --> 00:06:13,870
+okay,guys,thank you,it's been fun.
+
+125
+00:06:14,020 --> 00:06:14,760
+yeah,thanks.
+
+126
+00:06:14,930 --> 00:06:15,820
+should we invite them to the party?
+
+127
+00:06:15,990 --> 00:06:18,200
+no,just keep walking.
+
+128
+00:06:18,760 --> 00:06:22,430
+he must be very skilled at coitus.
+
+129
+00:06:24,030 --> 00:06:25,220
+i'm telling you,dude,
+
+130
+00:06:25,390 --> 00:06:34,070
+the only way to feel better about penny going out with other guys is for you to get back on the whores.
+
+131
+00:06:34,310 --> 00:06:36,140
+horse.
+
+132
+00:06:36,310 --> 00:06:41,660
+- what?
+- the phrase is "get back on the horse," not "whores.
+
+133
+00:06:41,810 --> 00:06:44,510
+" that's disgusting,dude.
+
+134
+00:06:44,800 --> 00:06:46,560
+no,it's not...
+
+135
+00:06:46,680 --> 00:06:48,540
+never mind.
+
+136
+00:06:48,770 --> 00:06:50,040
+he is right,though.
+
+137
+00:06:50,210 --> 00:06:53,830
+if you want,i can turn you on to this great new dating site i found.
+
+138
+00:06:53,980 --> 00:06:54,880
+no,thanks.
+
+139
+00:06:55,020 --> 00:06:57,310
+you sure?they say they can find a match for anybody.
+
+140
+00:06:57,460 --> 00:06:58,990
+have they found a match for you?
+
+141
+00:06:59,150 --> 00:06:59,800
+tons.
+
+142
+00:06:59,970 --> 00:07:01,920
+i've had,like,eight dates in the last month.
+
+143
+00:07:02,070 --> 00:07:05,510
+and 12 if you count the ones who showed up and left.
+
+144
+00:07:05,670 --> 00:07:07,410
+i can't bring the nitrogen tank down.
+
+145
+00:07:07,560 --> 00:07:08,310
+why not?
+
+146
+00:07:08,460 --> 00:07:09,360
+all right,let me restate that.
+
+147
+00:07:09,500 --> 00:07:13,050
+it's very heavy,and i don't want to.
+
+148
+00:07:13,190 --> 00:07:13,950
+i'll help you.
+
+149
+00:07:14,130 --> 00:07:15,540
+thank you.
+
+150
+00:07:16,040 --> 00:07:19,170
+lift with your knees,not your back.
+
+151
+00:07:19,300 --> 00:07:21,070
+good night.
+
+152
+00:07:23,170 --> 00:07:24,940
+you know what wouldbe fun?
+
+153
+00:07:25,110 --> 00:07:28,140
+signing sheldonup for online dating.
+
+154
+00:07:28,300 --> 00:07:28,840
+yeah,right.
+
+155
+00:07:29,030 --> 00:07:29,790
+no,think about it.
+
+156
+00:07:29,940 --> 00:07:31,210
+we make it an experiment.
+
+157
+00:07:31,360 --> 00:07:35,950
+like when frankenstein's monster was lonely and he found a wife.
+
+158
+00:07:36,130 --> 00:07:38,090
+he didn'tfinda wife.
+
+159
+00:07:38,250 --> 00:07:42,430
+theybuilt hima wife out of dead body parts.
+
+160
+00:07:42,600 --> 00:07:45,650
+okay,we'll call that plan b.
+
+161
+00:07:51,010 --> 00:07:52,640
+coming!
+
+162
+00:07:55,640 --> 00:07:58,850
+damn you,you rat bastard.
+
+163
+00:07:58,990 --> 00:07:59,800
+are you drunk?
+
+164
+00:07:59,970 --> 00:08:03,840
+zack was a perfectly nice guy,and then you ruined him!
+
+165
+00:08:04,000 --> 00:08:05,330
+how did iruin him?
+
+166
+00:08:05,490 --> 00:08:11,260
+'cause in the olden days,i never would've known he was so stupid.
+
+167
+00:08:12,800 --> 00:08:14,550
+come on,he wasn't that stupid.
+
+168
+00:08:14,720 --> 00:08:15,910
+yes,he was!
+
+169
+00:08:16,090 --> 00:08:19,770
+he thought you were gonna blow up the moon!
+
+170
+00:08:19,920 --> 00:08:22,500
+****
+
+171
+00:08:22,670 --> 00:08:30,190
+********************
+
+172
+00:08:31,260 --> 00:08:33,410
+how is thatmyfault?
+
+173
+00:08:33,600 --> 00:08:36,300
+you have destroyed my ability to tolerate idiots.
+
+174
+00:08:36,460 --> 00:08:37,760
+now,come with me.
+
+175
+00:08:37,910 --> 00:08:38,620
+wh-where are we going?
+
+176
+00:08:38,800 --> 00:08:40,250
+we're gonna have sex.
+
+177
+00:08:40,430 --> 00:08:43,380
+why?i mean,okay.
+
+178
+00:08:44,860 --> 00:08:46,190
+what's going on?
+
+179
+00:08:46,350 --> 00:08:51,440
+put on your noise- canceling headphones,'cause it's gonna get loud.
+
+180
+00:08:52,630 --> 00:08:55,990
+notthisagain.
+
+181
+00:09:08,400 --> 00:09:11,700
+In what universe is this low-pulp?
+
+182
+00:09:14,860 --> 00:09:16,850
+good morning,penny.
+
+183
+00:09:17,030 --> 00:09:19,120
+what,do you have eyes in the back of your head?
+
+184
+00:09:19,280 --> 00:09:21,940
+when one gets beaten up every other day in school,
+
+185
+00:09:22,100 --> 00:09:26,070
+one of necessity develops a keen sense of hearing.
+
+186
+00:09:26,250 --> 00:09:32,630
+incidentally,one can get beaten up in school simply by referring to oneself as "one.
+
+187
+00:09:32,790 --> 00:09:33,900
+" s i'm making english muffins.
+
+188
+00:09:34,070 --> 00:09:35,370
+would you like an english muffin?
+
+189
+00:09:35,580 --> 00:09:37,240
+oh,thanks,i'm not hungry.
+
+190
+00:09:37,410 --> 00:09:43,060
+fyi,my noise-canceling headphones proved ineffective last night.
+
+191
+00:09:43,200 --> 00:09:44,590
+yeah,sorry about that.
+
+192
+00:09:44,760 --> 00:09:50,500
+as a native texan,i must say i've never heard the phrase "yee-haw" used in quite that context.
+
+193
+00:09:50,660 --> 00:09:52,460
+oh,god.
+
+194
+00:09:52,850 --> 00:09:54,980
+"oh,god.
+
+195
+00:09:55,130 --> 00:09:59,000
+" that i've heard on multiple occasions.
+
+196
+00:10:01,930 --> 00:10:06,650
+in what universe is that lightly toasted?
+
+197
+00:10:08,740 --> 00:10:12,260
+this has to be the worst day of my life.
+
+198
+00:10:13,030 --> 00:10:14,900
+good morning,leonard.
+
+199
+00:10:15,080 --> 00:10:17,610
+how many times have i asked you not to do that?
+
+200
+00:10:17,780 --> 00:10:21,750
+counting this instance? 317.
+
+201
+00:10:22,790 --> 00:10:23,790
+where's penny?
+
+202
+00:10:23,980 --> 00:10:25,460
+she returned to her apartment.
+
+203
+00:10:25,630 --> 00:10:27,360
+i presume to shower and vomit.
+
+204
+00:10:27,530 --> 00:10:30,480
+not necessarily in that order.
+
+205
+00:10:30,640 --> 00:10:33,010
+i wonder why she didn't say good-bye.
+
+206
+00:10:33,180 --> 00:10:37,180
+are you expecting me to offer an explanation of human behavior?
+
+207
+00:10:37,360 --> 00:10:38,730
+i know.i just thought as an outsider,
+
+208
+00:10:38,890 --> 00:10:45,560
+you might be able to provide a fresh perspective.
+
+209
+00:10:45,720 --> 00:10:49,950
+i havenodifficulty believing you're not butter.
+
+210
+00:10:45,720 --> 00:10:54,270
+***
+
+211
+00:10:54,270 --> 00:10:55,100
+um,i gotta run.
+
+212
+00:10:55,280 --> 00:10:56,080
+early shift.
+
+213
+00:10:56,250 --> 00:10:57,920
+okay,i'll walk down with you.
+
+214
+00:10:58,080 --> 00:11:00,190
+so,last night was fun,huh?
+
+215
+00:11:00,360 --> 00:11:01,330
+yeah,it must have been.
+
+216
+00:11:01,480 --> 00:11:04,230
+i just threw up in my closet.
+
+217
+00:11:04,830 --> 00:11:05,830
+bummer.
+
+218
+00:11:05,960 --> 00:11:08,360
+anyway,i was thinking tonight maybe we could catch a movie.
+
+219
+00:11:08,510 --> 00:11:10,610
+oh,yeah,tonight's not great for me.
+
+220
+00:11:10,760 --> 00:11:11,580
+doesn't have to be tonight.
+
+221
+00:11:11,740 --> 00:11:14,840
+i'm free pretty much always.
+
+222
+00:11:15,010 --> 00:11:17,700
+leonard,last night was a mistake.
+
+223
+00:11:17,860 --> 00:11:23,970
+when you say "mistake," do you mean a fortunate mistake,like the discovery of penicillin?
+
+224
+00:11:24,140 --> 00:11:25,220
+look,i'm sorry.
+
+225
+00:11:25,410 --> 00:11:28,030
+i was drunk,i was lonely,i hated zack.
+
+226
+00:11:28,180 --> 00:11:29,910
+can we just forget it ever happened?
+
+227
+00:11:30,070 --> 00:11:33,140
+no,it's pretty well imprinted on my brain.
+
+228
+00:11:33,290 --> 00:11:35,320
+especially the whole rodeo thing.
+
+229
+00:11:35,500 --> 00:11:36,760
+oh,god!
+
+230
+00:11:36,910 --> 00:11:37,890
+so,that's it?
+
+231
+00:11:38,050 --> 00:11:39,800
+wham,bam,thank you,leonard?
+
+232
+00:11:39,990 --> 00:11:40,850
+look,i said i'm sorry.
+
+233
+00:11:41,010 --> 00:11:42,090
+can't you please let it go?
+
+234
+00:11:42,260 --> 00:11:43,460
+how am i supposed to let it go?
+
+235
+00:11:43,620 --> 00:11:46,690
+you used me for sex!
+
+236
+00:11:49,840 --> 00:11:51,400
+morning,mrs.gunderson.
+
+237
+00:11:51,570 --> 00:11:52,600
+good morning,leonard.
+
+238
+00:11:52,760 --> 00:11:57,280
+or should i say "yee-haw"?
+
+239
+00:12:03,460 --> 00:12:04,980
+holy crap.
+
+240
+00:12:05,150 --> 00:12:05,820
+what?
+
+241
+00:12:05,990 --> 00:12:10,010
+we finally have proof that aliens walk among us.
+
+242
+00:12:10,170 --> 00:12:10,810
+excuse me?
+
+243
+00:12:10,970 --> 00:12:14,410
+the dating site matched a woman with sheldon.
+
+244
+00:12:14,550 --> 00:12:15,220
+you're kidding.
+
+245
+00:12:15,380 --> 00:12:16,440
+an actual woman?
+
+246
+00:12:16,610 --> 00:12:17,590
+yeah,look.
+
+247
+00:12:17,740 --> 00:12:19,740
+breasts and everything.
+
+248
+00:12:19,880 --> 00:12:23,120
+trust me,breasts doesn't necessarily mean woman.
+
+249
+00:12:23,270 --> 00:12:24,130
+since when?
+
+250
+00:12:24,300 --> 00:12:29,910
+i'll show you a picture of my uncle louie in a bathing suit sometime.
+
+251
+00:12:30,910 --> 00:12:32,210
+leonard,you gotta see this.
+
+252
+00:12:32,370 --> 00:12:34,000
+we found a match for sheldon.
+
+253
+00:12:34,170 --> 00:12:34,690
+leonard: great.
+
+254
+00:12:34,870 --> 00:12:35,940
+maybe she can have sex with him,
+
+255
+00:12:36,100 --> 00:12:40,960
+and then walk out on him the next morning without so much as a "how do you do?
+
+256
+00:12:41,120 --> 00:12:41,980
+" do you know what he's talking about?
+
+257
+00:12:42,140 --> 00:12:43,200
+nope.why don't you ask him?
+
+258
+00:12:43,350 --> 00:12:44,340
+leonard,what are you talking about?
+
+259
+00:12:44,480 --> 00:12:45,500
+i don't want to talk about it.
+
+260
+00:12:45,650 --> 00:12:48,060
+that was a lousy suggestion.
+
+261
+00:12:48,190 --> 00:12:48,990
+whatever.
+
+262
+00:12:49,140 --> 00:12:54,230
+right now,dr.sheldon cooper has to send an e-mail to his perfect match.
+
+263
+00:12:54,380 --> 00:12:58,850
+"greetings,fellow life-form...
+
+264
+00:13:00,620 --> 00:13:01,760
+" if she can do it,i can do it.
+
+265
+00:13:01,910 --> 00:13:02,920
+if she can do it,i can do it.
+
+266
+00:13:03,070 --> 00:13:05,220
+if she can do it,i can do it.
+
+267
+00:13:06,570 --> 00:13:08,090
+i can't do it.
+
+268
+00:13:09,000 --> 00:13:10,260
+hello?
+
+269
+00:13:10,420 --> 00:13:14,130
+hi,leslie.
+
+270
+00:13:14,320 --> 00:13:15,340
+leonard hofstadter.
+
+271
+00:13:15,490 --> 00:13:16,480
+what're you doing here?
+
+272
+00:13:16,640 --> 00:13:17,690
+uh,i know!
+
+273
+00:13:17,840 --> 00:13:18,750
+it's been a while!
+
+274
+00:13:18,910 --> 00:13:20,660
+yeah,18 months.
+
+275
+00:13:20,800 --> 00:13:21,670
+right.
+
+276
+00:13:21,830 --> 00:13:22,960
+right.
+
+277
+00:13:23,900 --> 00:13:26,000
+so how you doing?
+
+278
+00:13:26,230 --> 00:13:26,920
+fine.
+
+279
+00:13:27,080 --> 00:13:27,940
+you?
+
+280
+00:13:28,110 --> 00:13:29,260
+uh,not bad.
+
+281
+00:13:29,410 --> 00:13:33,730
+you remember when we used to have sex and you said that it didn't mean anything,
+
+282
+00:13:33,880 --> 00:13:35,000
+t was just for fun?
+
+283
+00:13:35,170 --> 00:13:36,600
+yeah.
+
+284
+00:13:36,740 --> 00:13:40,770
+you,uh,want to do that again?
+
+285
+00:13:41,100 --> 00:13:42,770
+what happened?blondie dumped you?
+
+286
+00:13:42,930 --> 00:13:43,560
+she didn't dump me.
+
+287
+00:13:43,730 --> 00:13:46,780
+we were just in different places in the relationship.
+
+288
+00:13:46,940 --> 00:13:47,880
+right.
+
+289
+00:13:48,360 --> 00:13:50,180
+anyway,apparently,
+
+290
+00:13:50,340 --> 00:13:56,120
+it's okay to go back to people you're no longer seeing and have recreational sex with them.
+
+291
+00:13:56,830 --> 00:13:59,080
+so,what do you say?
+
+292
+00:13:59,220 --> 00:14:01,180
+let me think about it.
+
+293
+00:14:07,890 --> 00:14:09,910
+she's not coming back.
+
+294
+00:14:14,320 --> 00:14:16,170
+she wants to meet us.
+
+295
+00:14:16,320 --> 00:14:17,250
+not us.him.
+
+296
+00:14:17,410 --> 00:14:20,230
+yes,but him doesn't even know about her.
+
+297
+00:14:20,360 --> 00:14:23,330
+well,him about to find out about her.
+
+298
+00:14:23,480 --> 00:14:25,940
+really?us gonna tell him?
+
+299
+00:14:26,080 --> 00:14:28,220
+who's going to tell whom about what?
+
+300
+00:14:28,370 --> 00:14:29,590
+sheldon.
+
+301
+00:14:30,490 --> 00:14:32,550
+your surprise confuses me.
+
+302
+00:14:32,700 --> 00:14:34,760
+i live here.
+
+303
+00:14:35,540 --> 00:14:36,370
+right.
+
+304
+00:14:36,530 --> 00:14:40,410
+so,listen,what are you doing tomorrow afternoon?
+
+305
+00:14:40,560 --> 00:14:41,870
+be more specific.
+
+306
+00:14:42,020 --> 00:14:42,800
+4:30.
+
+307
+00:14:42,970 --> 00:14:44,160
+that's not afternoon.
+
+308
+00:14:44,310 --> 00:14:46,630
+that's preevning.
+
+309
+00:14:46,760 --> 00:14:47,320
+what?
+
+310
+00:14:47,500 --> 00:14:49,360
+it's a time of day i invented.
+
+311
+00:14:49,520 --> 00:14:55,430
+it better defines the ambiguous period between afternoon and evening: preevning.
+
+312
+00:14:55,580 --> 00:14:59,530
+i'm fairly certain it will catch on as it fills a desperate need.
+
+313
+00:14:59,680 --> 00:15:00,300
+right,okay.
+
+314
+00:15:00,470 --> 00:15:02,260
+what are you doing tomorrow preevning?
+
+315
+00:15:02,400 --> 00:15:04,230
+well,tomorrow's saturday.
+
+316
+00:15:04,390 --> 00:15:06,260
+saturday night is laundry night.
+
+317
+00:15:06,410 --> 00:15:11,060
+so i'll be spending the preevning pre-sorting and pre-soaking.
+
+318
+00:15:11,220 --> 00:15:14,530
+okay,what if i were to tell you,tomorrow,at 4:30,
+
+319
+00:15:14,670 --> 00:15:19,610
+you could meet a woman who has been scientifically chosen to be your perfect mate?
+
+320
+00:15:19,760 --> 00:15:22,550
+i would snort in derision and throw my arms in the air,
+
+321
+00:15:22,700 --> 00:15:26,290
+exhausted by your constant tomfoolery.
+
+322
+00:15:26,450 --> 00:15:28,810
+but it's true.
+
+323
+00:15:30,290 --> 00:15:33,850
+but we-we put all your vital information into this dating site,
+
+324
+00:15:34,000 --> 00:15:37,230
+answered all their questions just like you would,and they found a match for you.
+
+325
+00:15:37,390 --> 00:15:39,810
+her name is amy farrah fowler.
+
+326
+00:15:39,960 --> 00:15:40,600
+please.
+
+327
+00:15:40,750 --> 00:15:43,520
+even assuming you could answer any question the way i would,
+
+328
+00:15:43,680 --> 00:15:46,720
+the algorithms used by matchmaking sites are complete hokum.
+
+329
+00:15:46,890 --> 00:15:51,800
+and that's exactly the answer we gave to the question: "what is your attitude towards online dating?
+
+330
+00:15:51,970 --> 00:15:54,830
+" howard wanted to write "mumbo jumbo," but i said no.
+
+331
+00:15:54,970 --> 00:15:59,170
+our sheldon would say "hokum.
+
+332
+00:16:00,340 --> 00:16:03,010
+" come on,where's your scientific curiosity?
+
+333
+00:16:03,160 --> 00:16:06,090
+well,most of it is being applied to unraveling the secrets of the universe
+
+334
+00:16:06,250 --> 00:16:10,050
+while the rest of it's wondering why i'm having this conversation with you.
+
+335
+00:16:10,240 --> 00:16:11,740
+okay,how about this.
+
+336
+00:16:11,890 --> 00:16:15,210
+even spock had a date once every seven years.
+
+337
+00:16:15,350 --> 00:16:16,220
+he didn't date.
+
+338
+00:16:16,390 --> 00:16:17,570
+it waspon farr.
+
+339
+00:16:17,710 --> 00:16:20,930
+his blood boiled with mating lust.
+
+340
+00:16:21,070 --> 00:16:23,030
+well,why-why don't you start with a cup of coffee,
+
+341
+00:16:23,250 --> 00:16:27,030
+and you canpon farr amy farrah fowler later.
+
+342
+00:16:27,190 --> 00:16:28,350
+i don't drink coffee.
+
+343
+00:16:28,500 --> 00:16:30,050
+all right,you can have a hot chocolate.
+
+344
+00:16:30,210 --> 00:16:34,030
+as i will not be engaging in this nonsense,my choice of beverage is moot.
+
+345
+00:16:34,180 --> 00:16:39,180
+but for the record,i only drink hot chocolate in months with an "r" in them.
+
+346
+00:16:39,300 --> 00:16:40,050
+why?
+
+347
+00:16:40,200 --> 00:16:42,740
+what's life without whimsy?
+
+348
+00:16:45,240 --> 00:16:47,050
+okay,i'm out.
+
+349
+00:16:52,260 --> 00:17:00,180
+sheldon,i've hidden the dirty sock from the roof somewhere in your apartment.
+
+350
+00:17:00,350 --> 00:17:07,250
+unless you are willing to come with us to meet this girl,it will remain there forever.
+
+351
+00:17:07,430 --> 00:17:09,280
+you're bluffing.
+
+352
+00:17:09,420 --> 00:17:12,750
+are you willing to risk it?
+
+353
+00:17:12,930 --> 00:17:15,190
+curse you.
+
+354
+00:17:37,190 --> 00:17:38,760
+30 feet.
+
+355
+00:17:46,970 --> 00:17:47,880
+hey,leonard.
+
+356
+00:17:48,040 --> 00:17:55,120
+i was a perfectly happy,geeky,little lonely guy,and you ruined me!
+
+357
+00:17:55,280 --> 00:17:56,160
+are you drunk?
+
+358
+00:17:56,310 --> 00:17:56,910
+come on.
+
+359
+00:17:57,080 --> 00:18:00,360
+we're gonna have sex,and it's not gonna mean a thing!
+
+360
+00:18:00,490 --> 00:18:03,240
+are you out of your mind?!
+
+361
+00:18:05,050 --> 00:18:09,100
+i'm really starting to think there's a double standard here.
+
+362
+00:18:13,570 --> 00:18:17,750
+in a few minutes,when i gloat over the failure of this enterprise,
+
+363
+00:18:17,890 --> 00:18:19,170
+how would you prefer i do it?
+
+364
+00:18:19,300 --> 00:18:20,730
+the standard "i told you so"?
+
+365
+00:18:20,870 --> 00:18:22,430
+the classic "neener-neener"?
+
+366
+00:18:22,580 --> 00:18:26,370
+or just my normal look of haughty derision?
+
+367
+00:18:27,610 --> 00:18:29,040
+you don't know we're wrong yet.
+
+368
+00:18:29,160 --> 00:18:31,280
+haughty derision it is.
+
+369
+00:18:32,460 --> 00:18:33,340
+woman: excuse me.
+
+370
+00:18:33,480 --> 00:18:34,490
+i'm amy farrah fowler.
+
+371
+00:18:34,640 --> 00:18:36,200
+you're sheldon cooper.
+
+372
+00:18:36,350 --> 00:18:38,100
+hello,amy farrah fowler.
+
+373
+00:18:38,250 --> 00:18:40,820
+i'm sorry to inform you that you have been taken in
+
+374
+00:18:40,970 --> 00:18:45,070
+by unsupportable mathematics designed to prey on the gullible and the lonely.
+
+375
+00:18:45,220 --> 00:18:49,600
+additionally,i'm being blackmailed with a hidden dirty sock.
+
+376
+00:18:49,750 --> 00:18:53,340
+if that was slang,i'm unfamiliar with it.
+
+377
+00:18:53,480 --> 00:18:58,090
+if it was literal,i share your aversion to soiled hosiery.
+
+378
+00:18:58,230 --> 00:18:58,820
+heory in any case,
+
+379
+00:18:58,960 --> 00:19:02,790
+i'm here because my mother and i have agreed that i will date at least once a year.
+
+380
+00:19:02,960 --> 00:19:04,010
+interesting.
+
+381
+00:19:04,180 --> 00:19:07,730
+my mother and i have the same agreement about church.
+
+382
+00:19:07,880 --> 00:19:09,460
+i don't object to the concept of a deity,
+
+383
+00:19:09,600 --> 00:19:13,850
+but i'm baffled by the notion of one that takes attendance.
+
+384
+00:19:14,000 --> 00:19:17,200
+well,then you might want to avoid east texas.
+
+385
+00:19:17,350 --> 00:19:18,320
+noted.
+
+386
+00:19:18,460 --> 00:19:19,610
+now,before this goes any further,
+
+387
+00:19:19,760 --> 00:19:26,810
+you should know that all forms of physical contact up to and including coitus are off the table.
+
+388
+00:19:26,960 --> 00:19:30,380
+may i buy you a beverage?
+
+389
+00:19:30,530 --> 00:19:33,110
+tepid water,please.
+
+390
+00:19:40,500 --> 00:19:43,620
+good god,what have we done?
+
