@@ -97,5 +97,6 @@ module.exports = {
     camelcase: 'off',
     'no-redeclare': 'off',
     'no-nested-ternary': 'off',
+    'func-names': ['error', 'as-needed'],
   },
 };

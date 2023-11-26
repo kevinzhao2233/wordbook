@@ -37,7 +37,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { article as testArticle } from '../assets/data.js';
 import { splitWord, translateWords } from '../core/index';

@@ -6,3 +6,8 @@ declare global {
   interface Window {
   }
 }
+
+export interface WorkerEventData {
+  type: string;
+  payload: any;
+}

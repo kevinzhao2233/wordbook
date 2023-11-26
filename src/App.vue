@@ -4,7 +4,7 @@
   </AppProvider>
 </template>
 
-<script setup>
-import AppProvider from './components/AppProvider.vue'
-import Home from './components/Home.vue'
+<script lang="ts" setup>
+import AppProvider from './components/AppProvider.vue';
+import Home from './views/home/Home.vue';
 </script>

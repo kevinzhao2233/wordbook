@@ -3,8 +3,8 @@ import tokenizer from 'wink-tokenizer';
 import sha256 from 'crypto-js/sha256';
 import encHex from 'crypto-js/enc-hex';
 // import CryptoJS from 'crypto-js';
-import axios from 'axios';
-import '../utils/axios';
+// import axios from 'axios';
+// import '../utils/axios';
 
 export const splitWord = (article) => {
   const START_TIME = Date.now();
@@ -80,30 +80,30 @@ export const translateWords = async (words, cb) => {
 
     idx += 1;
 
-    axios.jsonp('https://openapi.youdao.com/api', {
-      q: query,
-      appKey,
-      salt,
-      from,
-      to,
-      sign,
-      signType: 'v3',
-      curtime,
-    }).then((res) => {
-      if (res.errorCode === '0') {
-        const result = populateYoudaoRes(res);
-        const wordIndex = words.findIndex((item) => item.word === result.originQuery);
-        if (wordIndex) {
-          words[wordIndex] = {
-            ...words[wordIndex],
-            ...result,
-          };
-        }
-      }
-      if (idx >= 5) {
-        cb(words);
-      }
-    });
+    // axios.jsonp('https://openapi.youdao.com/api', {
+    //   q: query,
+    //   appKey,
+    //   salt,
+    //   from,
+    //   to,
+    //   sign,
+    //   signType: 'v3',
+    //   curtime,
+    // }).then((res) => {
+    //   if (res.errorCode === '0') {
+    //     const result = populateYoudaoRes(res);
+    //     const wordIndex = words.findIndex((item) => item.word === result.originQuery);
+    //     if (wordIndex) {
+    //       words[wordIndex] = {
+    //         ...words[wordIndex],
+    //         ...result,
+    //       };
+    //     }
+    //   }
+    //   if (idx >= 5) {
+    //     cb(words);
+    //   }
+    // });
   }, 200);
 };
 
