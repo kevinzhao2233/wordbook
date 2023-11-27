@@ -6,10 +6,8 @@
       <span>/</span>
       <span class="text-btn" @click="open({ reset: true, directory: true })">文件夹</span>
     </div>
-    <BookList />
-  </div>
-  <div style="display: none;">
-    <div ref="htmlRef" v-html="html" />
+    <!-- <BookList /> -->
+    <WordList :raw-word-list="rawWordList" />
   </div>
 </template>
 <script setup lang="ts">
@@ -23,15 +21,14 @@ import BookList from './components/BookList.vue';
 import { FileState } from './types';
 import { WorkerEventData } from '@/typings';
 import { parseHtml } from '@/core/parseHtml';
+import WordList from './components/WordList.vue';
+import { IWordsResult } from '@/core/translate/youdao';
 
 const {
   data, post, terminate, worker,
 } = useWebWorker(workerUrl);
 
 const state = ref<FileState>('NO_FILE');
-
-const html = ref('');
-const htmlRef = ref<HTMLElement>();
 
 const {
   files, open, reset, onChange,
@@ -42,12 +39,18 @@ onChange((fileList: FileList) => {
   post({ type: 'split-word', payload: fileList } as WorkerEventData);
 });
 
+const rawWordList = ref<IWordsResult>([]);
+
 // useWebWorker 封装了事件处理，这里的 watch 就相当于 onmessage
 watch(data, (newValue) => {
   console.log('watch data', newValue);
   if (newValue.type === 'parse-html') {
     const raw = parseHtml(newValue.payload.html);
     post({ type: 'parse-html:done', payload: { id: newValue.payload.id, raw } } as WorkerEventData);
+  }
+  if (newValue.type === 'split-word:done') {
+    console.log(newValue.payload);
+    rawWordList.value = newValue.payload;
   }
 });
 </script>

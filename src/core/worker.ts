@@ -8,15 +8,13 @@ import { readFile } from './readFile';
 import { parseSrt } from './parseSrt';
 import { parseMarkdownToHtml } from './parseMarkdown';
 import { wordFrequencySort } from './wordFrequencySort';
+import { translateWords } from './translate/youdao';
 
 // 解析 HTML 需要借助主线程渲染到 dom，所以这里需要一个池子，用来存储去解析的 html
 const parseHTMLPool: Map<string, boolean> = new Map();
 const tmpMdRaws: string[] = [];
 
 const allOriginTokens: IOriginToken[][] = [];
-
-// TODO splitWord 中取消排序，所有文件都分词之后再排序
-// TODO 对 markdown 的纯文本分词
 
 /**
  * 分词，这里来的所有文件都是可以进行分词的类型，比如 txt, md, srt 等等
@@ -56,7 +54,10 @@ const handleSplitWord = async (fileList: FileList) => {
 
 const generateWordBook = (tokens: IOriginToken[][]) => {
   const words = wordFrequencySort(tokens);
-  console.log(words);
+  postMessageToMain({
+    type: 'split-word:done',
+    payload: words,
+  });
 };
 
 const postMessageToMain = (data: WorkerEventData) => {
@@ -79,6 +80,7 @@ onmessage = function (event: MessageEvent<WorkerEventData>) {
     if (isAllDone) {
       const { originTokens } = splitWord(tmpMdRaws.join('\n'));
       allOriginTokens.push(...originTokens);
+      console.log('分词完成，md', { originTokens });
       generateWordBook(allOriginTokens);
     }
   }

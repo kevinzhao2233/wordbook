@@ -15,8 +15,8 @@
     "@icon-park/vue-next": "^1.4.2",
     "@mdit-vue/shared": "^1.0.0",
     "@vueuse/core": "^10.5.0",
-    "alova": "^2.13.2",
     "ant-design-vue": "^4.0.7",
+    "axios": "^1.6.2",
     "b-pretty-log": "0.2.2",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
@@ -27,11 +27,13 @@
     "nanoid": "^5.0.3",
     "sentence-splitter": "^4.3.0",
     "srt-parser-2": "^1.2.3",
+    "type-fest": "^4.8.2",
     "vue": "^3.3.8",
     "vue-router": "4.2.5",
     "wink-tokenizer": "^5.3.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.1",
     "@types/lodash": "^4.14.199",
     "@types/markdown-it": "^13.0.7",
     "@types/markdown-it-container": "^2.0.9",
