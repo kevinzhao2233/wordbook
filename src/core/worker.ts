@@ -3,13 +3,17 @@
 
 import { nanoid } from 'nanoid';
 import { WorkerEventData } from '@/typings';
-import { splitWord } from './splitWord';
+import { IOriginToken, splitWord } from './splitWord';
 import { readFile } from './readFile';
 import { parseSrt } from './parseSrt';
 import { parseMarkdownToHtml } from './parseMarkdown';
+import { wordFrequencySort } from './wordFrequencySort';
 
 // 解析 HTML 需要借助主线程渲染到 dom，所以这里需要一个池子，用来存储去解析的 html
 const parseHTMLPool: Map<string, boolean> = new Map();
+const tmpMdRaws: string[] = [];
+
+const allOriginTokens: IOriginToken[][] = [];
 
 // TODO splitWord 中取消排序，所有文件都分词之后再排序
 // TODO 对 markdown 的纯文本分词
@@ -24,13 +28,15 @@ const handleSplitWord = async (fileList: FileList) => {
   for await (const res of readFileFnList) {
     console.log('读取文件完成，文件类型：', res.type);
     if (res.type === 'txt') {
-      const { pureSentenceNodes, words } = splitWord(res.raw);
-      console.log('分词完成，txt', pureSentenceNodes, words);
+      const { pureSentenceNodes, originTokens } = splitWord(res.raw);
+      allOriginTokens.push(...originTokens);
+      console.log('分词完成，txt', { pureSentenceNodes, originTokens });
     }
     if (res.type === 'srt') {
       const text = parseSrt(res.raw);
-      const { pureSentenceNodes, words } = splitWord(text);
-      console.log('分词完成，srt', pureSentenceNodes, words);
+      const { pureSentenceNodes, originTokens } = splitWord(text);
+      allOriginTokens.push(...originTokens);
+      console.log('分词完成，srt', { pureSentenceNodes, originTokens });
     }
     if (res.type === 'md') {
       const html = parseMarkdownToHtml(res.raw);
@@ -42,15 +48,15 @@ const handleSplitWord = async (fileList: FileList) => {
       });
     }
   }
-  // 检测，如果有 md，则需要等待后面 parse-html:done 事件处理后续逻辑
+  // 没有 md，这里直接生成单词本，若有则需要等待后面 parse-html:done 事件
   if (parseHTMLPool.size === 0) {
-    // 没有 md 则直接处理后续逻辑
+    generateWordBook(allOriginTokens);
   }
-  // readFile(fileList[0]).then(res => {
-  //   // 假设是 srt
-  //   const text = parseSrt(res)
-  //   console.log(text)
-  // })
+};
+
+const generateWordBook = (tokens: IOriginToken[][]) => {
+  const words = wordFrequencySort(tokens);
+  console.log(words);
 };
 
 const postMessageToMain = (data: WorkerEventData) => {
@@ -64,12 +70,16 @@ onmessage = function (event: MessageEvent<WorkerEventData>) {
   }
   if (data.type === 'parse-html:done') {
     parseHTMLPool.set(data.payload.id, true);
+    tmpMdRaws.push(data.payload.raw);
+
     let isAllDone = true;
     parseHTMLPool.forEach((value) => {
       if (isAllDone === true && value === false) { isAllDone = false; }
     });
     if (isAllDone) {
-      // 所有 HTML 解析完成，则可以进行后续逻辑
+      const { originTokens } = splitWord(tmpMdRaws.join('\n'));
+      allOriginTokens.push(...originTokens);
+      generateWordBook(allOriginTokens);
     }
   }
   if (data.type === 'stop') {
