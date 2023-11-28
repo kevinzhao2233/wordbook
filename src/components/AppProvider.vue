@@ -12,13 +12,15 @@ import 'dayjs/locale/zh-cn';
 
 const andvTheme: ThemeConfig = {
   token: {
-    colorPrimary: '#02d28c',
-    colorLink: '#02d28c',
-    colorLinkActive: '#00ab78',
-    colorLinkHover: '#4debac',
+    colorPrimary: '#ff7f50',
+    colorLink: '#ff7f50',
+    colorLinkActive: '#dd6236',
+    colorLinkHover: '#ffa078',
     colorSuccess: '#13c2c2',
     colorWarning: '#ffab25',
     colorError: '#fb5228',
+    colorText: '#000000',
+    colorTextSecondary: '#2c2c2c',
   },
 };
 

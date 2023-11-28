@@ -70,52 +70,82 @@ const findTheShortestSentence = (sentenceList: string[]) => {
 </script>
 
 <style lang="scss" scoped>
+@font-face {
+  font-family: Gilroy;
+  src: url(../assets/Gilroy/Gilroy-Medium-2.otf);
+}
+
+@font-face {
+  font-family: georgia;
+  src: url(../assets/GEORGIA/GEORGIA.ttf);
+}
+
+.thin {
+  font-weight: 300;
+  color: rgba(#000000, 0.6);
+}
+.font-Gilroy {
+  font-family: Gilroy;
+}
+
 .result {
   flex: 1;
   max-width: 720px;
+  height: 100%;
+  padding: 0 9pt;
+  overflow-y: auto;
+  font-size: 9pt;
   line-height: 1.4;
 
   .word-item {
-    margin-bottom: 24px;
+    margin-bottom: 14pt;
 
     .main-info {
       display: flex;
-      column-gap: 24px;
+      column-gap: 14pt;
       align-items: end;
       justify-content: space-between;
-      margin-bottom: 8px;
+      margin-bottom: 5pt;
 
       .word {
-        font-size: 1.2em;
+        font-size: 11pt;
         font-weight: 600;
       }
 
-      // .pronounce {
-      // }
+      .pronounce {
+        font-size: 10.5pt;
+      }
 
       .no {
         display: flex;
+        align-items: end;
         padding: 0 2px;
-        font-size: 12px;
 
         .label {
+          font-size: 10.5pt;
+          line-height: 1;
           color: rgba(#000000, 0.5);
+        }
+
+        .value {
+          font-size: 10.5pt;
+          line-height: 1;
         }
       }
 
       .frequency {
         display: flex;
         margin-left: auto;
-        font-size: 12px;
+        font-size: 9pt;
 
         .label {
-          padding-right: 2px;
-          padding-left: 2px;
+          padding: 0 2px;
+          line-height: calc(9pt + 5px);
           color: #ffffff;
           background: rgba(#000000, 0.5);
         }
         .value {
-          min-width: 25px;
+          min-width: 18pt;
           text-align: center;
           border: 1px solid rgba(#000000, 0.3);
         }

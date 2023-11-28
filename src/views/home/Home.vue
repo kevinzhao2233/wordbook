@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <div v-if="state === 'NO_FILE'" class="choise-container">
-      <Plus size="28" class="icon" />
+      <Plus class="icon" />
       <span class="text-btn" @click="open({ accept: '.srt, .md, .txt', reset: true, directory: false })">选择文件</span>
       <span>/</span>
       <span class="text-btn" @click="open({ reset: true, directory: true })">文件夹</span>
@@ -76,22 +76,30 @@ watch(data, (newValue) => {
     padding: 0 20px;
     margin-top: 240px;
     font-size: 20px;
-    border: 2px solid rgba($primary-color, 0.2);
+    background: $bg-200;
     border-radius: 28px;
-    box-shadow: 0 12px 32px -8px rgba($primary-color, 0.2);
 
     .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
       margin-right: 8px;
+      font-size: 28px;
+      line-height: 28px;
+      color: $primary-300;
+      vertical-align: middle;
+      background: $accent-200;
+      border-radius: 8px;
     }
 
     .text-btn {
-      color: #343434;
       cursor: pointer;
-      transition: font-size 0.3s, color 0.3s;
+      transition: font-size 0.2s;
 
       &:hover {
         font-size: 1.2em;
-        color: #121315;
       }
     }
   }
