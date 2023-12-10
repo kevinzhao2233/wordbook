@@ -37,10 +37,9 @@ export interface AxiosJsonp extends AxiosStatic {
   return new Promise((resolve, reject) => {
     (window as Record<string, any>)[callback] = (r: any) => {
       resolve(r);
-      // headEle.removeChild(JSONP);
-      // delete (window as Record<string, any>)[callback];
+      headEle.removeChild(JSONP);
+      delete (window as Record<string, any>)[callback];
     };
-    console.log(callback);
     headEle.appendChild(JSONP);
   });
 };

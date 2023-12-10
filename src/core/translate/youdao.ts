@@ -47,7 +47,7 @@ export const translateWords = async (words: IWord[], cb: (result: IWordsResult) 
       if (res.errorCode === '0') {
         const result = populateYoudaoRes(res);
         const wordIndex = words.findIndex((item) => item.word === result.originQuery);
-        if (wordIndex) {
+        if (wordIndex !== -1) {
           words[wordIndex] = {
             ...words[wordIndex],
             ...result,
