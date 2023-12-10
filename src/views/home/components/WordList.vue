@@ -37,6 +37,11 @@ interface IProps {
 }
 const props = withDefaults(defineProps<IProps>(), { });
 
+interface IEmits {
+  (e: 'onTranslationDone'): void;
+}
+const emits = defineEmits<IEmits>();
+
 const wordList = ref<IWordsResult>([]);
 
 const isTranslating = ref(false);
@@ -51,6 +56,7 @@ const startTrans = async () => {
   isTranslating.value = true;
   translateWords(JSON.parse(JSON.stringify(wordList.value)), (newWordList) => {
     console.log('翻译完啦', newWordList);
+    emits('onTranslationDone');
     wordList.value = newWordList;
     nextTick(() => {
       isTranslating.value = false;
@@ -89,11 +95,7 @@ const findTheShortestSentence = (sentenceList: string[]) => {
 }
 
 .result {
-  flex: 1;
-  max-width: 720px;
-  height: 100%;
   padding: 0 9pt;
-  overflow-y: auto;
   font-size: 9pt;
   line-height: 1.4;
 

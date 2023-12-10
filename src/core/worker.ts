@@ -21,6 +21,10 @@ const allOriginTokens: IOriginToken[][] = [];
  * @param fileList 文件列表
  */
 const handleSplitWord = async (fileList: FileList) => {
+  postMessageToMain({
+    type: 'split-word:start',
+    payload: '',
+  });
   const readFileFnList = Array.from(fileList).map((file) => readFile(file));
 
   for await (const res of readFileFnList) {
