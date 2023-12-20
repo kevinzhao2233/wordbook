@@ -25,7 +25,7 @@ import { useFileDialog, useWebWorker } from '@vueuse/core';
 // @ts-ignore
 import workerUrl from '../../core/worker?worker=file-chooser';
 
-import BookList from './components/BookList.vue';
+// import BookList from './components/BookList.vue';
 import { FileState } from './types';
 import { WorkerEventData } from '@/typings';
 import { parseHtml } from '@/core/parseHtml';
@@ -33,13 +33,13 @@ import WordList from './components/WordList.vue';
 import { IWordsResult } from '@/core/translate/youdao';
 
 const {
-  data, post, terminate, worker,
+  data, post,
 } = useWebWorker(workerUrl);
 
 const state = ref<FileState>('NO_FILE');
 
 const {
-  files, open, reset, onChange,
+  open, onChange,
 } = useFileDialog();
 
 onChange((fileList) => {
