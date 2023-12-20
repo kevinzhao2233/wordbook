@@ -50,10 +50,11 @@ html body {
 }
 
 @font-face {
-  font-family: AlimamaShuHeiTi-Bold;
-  src:
-    url(../assets/fonts/AlimamaShuHeiTi-Bold/AlimamaShuHeiTi-Bold.woff2) format('woff2'),
-    url(../assets/fonts/AlimamaShuHeiTi-Bold/AlimamaShuHeiTi-Bold.woff) format('woff'),
-    url(../assets/fonts/AlimamaShuHeiTi-Bold/AlimamaShuHeiTi-Bold.ttf) format('ttf'),
-    url(../assets/fonts/AlimamaShuHeiTi-Bold/AlimamaShuHeiTi-Bold.otf) format('otf');
+  font-family: Gilroy;
+  src: url(../assets/Gilroy/Gilroy-Regular.woff2);
+}
+
+@font-face {
+  font-family: georgia;
+  src: url(../assets/georgia/georgia.woff);
 }

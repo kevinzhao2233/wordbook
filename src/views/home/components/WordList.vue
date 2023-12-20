@@ -76,15 +76,6 @@ const findTheShortestSentence = (sentenceList: string[]) => {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: Gilroy;
-  src: url(../assets/Gilroy/Gilroy-Medium-2.otf);
-}
-
-@font-face {
-  font-family: georgia;
-  src: url(../assets/GEORGIA/GEORGIA.ttf);
-}
 
 .thin {
   font-weight: 300;
