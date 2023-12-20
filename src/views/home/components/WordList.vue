@@ -1,5 +1,14 @@
 <template>
   <div class="result">
+    <div v-if="wordList.length" class="directory">
+      <div class="directory-title">词汇表</div>
+      <template v-for="(item, idx) in letters" :key="item">
+        <div v-if="wordListByLetter[item]">
+          <div class="title" :class="idx === 0 ? 'title-first' : ''">{{ item }}</div>
+          <p v-for="word in wordListByLetter[item]" :key="word.word">{{ word.word }} / No.{{ word.No }}</p>
+        </div>
+      </template>
+    </div>
     <div v-for="(item, idx) in wordList" :key="item.word" class="word-item">
       <h2 v-if="idx % stageInterval === 0" class="stage">
         STAGE {{ idx / stageInterval + 1 }}
@@ -76,6 +85,7 @@ const startTrans = async () => {
     wordList.value = newWordList;
     nextTick(() => {
       isTranslating.value = false;
+      sortWitchLetter();
     });
   });
 };
@@ -88,6 +98,31 @@ const findTheShortestSentence = (sentenceList: string[]) => {
     }
   }
   return shortestSentence;
+};
+
+const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const wordListByLetter = ref<{ [key: string]: IWordsResult }>({});
+
+const sortWitchLetter = () => {
+  // 对wordList.value 中每一个 word 按照字母顺序排序，比如 a b c d
+  const copyWordList: IWordsResult = JSON.parse(JSON.stringify(wordList.value));
+  copyWordList.sort((a, b) => {
+    if (a.word < b.word) {
+      return -1;
+    }
+    if (a.word > b.word) {
+      return 1;
+    }
+    return 0;
+  });
+  copyWordList.forEach((item) => {
+    const letter = item.word[0];
+    if (!wordListByLetter.value[letter]) {
+      wordListByLetter.value[letter] = [];
+    }
+    wordListByLetter.value[letter].push(item);
+  });
+  console.log(wordListByLetter.value);
 };
 </script>
 
@@ -106,6 +141,36 @@ const findTheShortestSentence = (sentenceList: string[]) => {
   padding: 0 9pt;
   font-size: 9pt;
   line-height: 1.4;
+
+  .directory {
+    column-count: 3;
+    break-before: page;
+
+    .directory-title {
+      padding: 20pt 0;
+      font-size: 20pt;
+      font-weight: bold;
+      text-align: center;
+      column-span: all;
+    }
+
+    .title {
+      padding-left: 4pt;
+      margin-top: 1em;
+      font-size: 12pt;
+      font-weight: bold;
+      background: rgba(#000000, 0.1);
+
+      &.title-first {
+        margin-top: 0;
+      }
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.7;
+    }
+  }
 
   .word-item {
     margin-bottom: 14pt;
