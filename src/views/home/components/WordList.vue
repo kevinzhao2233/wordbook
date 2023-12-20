@@ -99,6 +99,7 @@ const findTheShortestSentence = (sentenceList: string[]) => {
 }
 .font-Gilroy {
   font-family: Gilroy;
+  font-weight: bolder;
 }
 
 .result {
