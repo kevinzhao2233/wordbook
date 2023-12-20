@@ -10,7 +10,12 @@
       <a-button type="primary" @click="handlePrint">打印</a-button>
     </div>
     <!-- <BookList /> -->
-    <WordList class="word-list-container" :raw-word-list="rawWordList" @on-translation-done="onTranslationDone" />
+    <WordList
+      class="word-list-container"
+      :raw-word-list="rawWordList"
+      :state="state"
+      @on-translation-done="onTranslationDone"
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -38,7 +43,10 @@ const {
 } = useFileDialog();
 
 onChange((fileList) => {
-  console.log(fileList);
+  if (!fileList || fileList.length === 0) {
+    return;
+  }
+  console.log({ fileList });
   post({ type: 'split-word', payload: fileList } as WorkerEventData);
 });
 

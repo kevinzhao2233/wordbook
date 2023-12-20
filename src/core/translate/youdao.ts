@@ -17,8 +17,10 @@ export const translateWords = async (words: IWord[], cb: (result: IWordsResult) 
 
   let idx = 0;
 
+  const testNum = 1;
+
   const timer = setInterval(() => {
-    if (idx >= 5) {
+    if (idx >= testNum) {
       clearInterval(timer);
       return;
     }
@@ -54,7 +56,7 @@ export const translateWords = async (words: IWord[], cb: (result: IWordsResult) 
           };
         }
       }
-      if (idx >= 5) {
+      if (idx >= testNum) {
         cb(words);
       }
     });

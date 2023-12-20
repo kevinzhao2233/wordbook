@@ -1,6 +1,12 @@
 <template>
   <div class="result">
     <div v-for="(item, idx) in wordList" :key="item.word" class="word-item">
+      <h2 v-if="idx % stageInterval === 0" class="stage">
+        STAGE {{ idx / stageInterval + 1 }}
+        <span class="extra"><span class="label">No.</span>{{ item.No }}<span class="label"> ~ No.</span>{{
+          item.No + stageInterval > wordList[wordList.length - 1].No ? wordList[wordList.length - 1].No : item.No + stageInterval
+        }}</span>
+      </h2>
       <div class="main-info">
         <div class="word">{{ item.word }}</div>
         <div v-if="item.isTranslated" class="pronounce">
@@ -31,9 +37,11 @@
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue';
 import { IWordsResult, translateWords } from '@/core/translate/youdao';
+import { FileState } from '../types';
 
 interface IProps {
   rawWordList: IWordsResult;
+  state: FileState;
 }
 const props = withDefaults(defineProps<IProps>(), { });
 
@@ -42,18 +50,26 @@ interface IEmits {
 }
 const emits = defineEmits<IEmits>();
 
+// TODO 需要放到设置中
+const stageInterval = ref(40);
+
 const wordList = ref<IWordsResult>([]);
 
 const isTranslating = ref(false);
 
-watch(() => props.rawWordList, (newVal) => {
-  if (isTranslating.value) return;
-  wordList.value = newVal;
-  startTrans();
+// TODO 应该监听状态，变化之后再翻译，而不是监听文件
+watch(() => props.state, (newVal) => {
+  if (newVal === 'IN_TRANSLATION') {
+    nextTick(() => {
+      wordList.value = props.rawWordList;
+      startTrans();
+    });
+  }
 });
 
 const startTrans = async () => {
   isTranslating.value = true;
+  console.log('开始翻译啦', wordList.value);
   translateWords(JSON.parse(JSON.stringify(wordList.value)), (newWordList) => {
     console.log('翻译完啦', newWordList);
     emits('onTranslationDone');
@@ -92,6 +108,23 @@ const findTheShortestSentence = (sentenceList: string[]) => {
 
   .word-item {
     margin-bottom: 14pt;
+
+    .stage {
+      padding: 10pt 0 2pt;
+      margin-bottom: 30pt;
+      font-size: 20pt;
+      border-bottom: 1px solid;
+      break-before: page;
+
+      .extra {
+        margin-left: 10pt;
+        font-size: 10.5pt;
+
+        .label {
+          color: rgba(#000000, 0.5);
+        }
+      }
+    }
 
     .main-info {
       display: flex;
