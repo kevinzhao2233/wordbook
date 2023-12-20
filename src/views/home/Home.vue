@@ -37,7 +37,7 @@ const {
   files, open, reset, onChange,
 } = useFileDialog();
 
-onChange((fileList: FileList) => {
+onChange((fileList) => {
   console.log(fileList);
   post({ type: 'split-word', payload: fileList } as WorkerEventData);
 });
