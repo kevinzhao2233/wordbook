@@ -9,13 +9,16 @@ export interface IOriginToken extends Tokenizer.Token {
  * 判断是否是词
  * @param word 要被判断的文本
  */
-const isWord = (word: string) => {
-  if (word.length === 0) {
+const isWord = (token: Tokenizer.Token) => {
+  if (token.tag !== 'word') {
+    return false;
+  }
+  if (token.value.length < 2) {
     return false;
   }
   // @ts-ignore
   // eslint-disable-next-line eqeqeq
-  if (word == Number(word)) {
+  if (token.value == Number(token.value)) {
     return false;
   }
   return true;
@@ -40,7 +43,8 @@ export const splitWord = (article: string) => {
     .map((node) => node.raw as string)
     .forEach((sentence) => {
       const tokens = tokenizerInst.tokenize(sentence);
-      const effectiveTokens = tokens.filter((token) => isWord(token.value));
+      const effectiveTokens = tokens.filter((token) => isWord(token));
+      // TODO 可能需要对 you're 这样的情况做拼接
 
       originTokens.push(effectiveTokens.map((item) => ({
         ...item,
