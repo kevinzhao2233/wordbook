@@ -2,7 +2,12 @@
   <div class="page-container" :class="{ print: state === 'PRINT' }">
     <div v-if="state === 'NO_FILE'" class="app-title">制作一个单词本</div>
     <div v-if="state === 'NO_FILE'" class="sub-title">从下面选择几个文件或文件夹开始吧</div>
-    <ChoiseFile :state="state" />
+    <SelectFile
+      v-if="['NO_FILE', 'SELECTING_FILE'].includes(state)"
+      :state="state"
+      @on-change-file="onChangeFile"
+      @on-start="startMakeBook"
+    />
     <BookList v-if="state === 'NO_FILE'" style="margin-top: 40px;" />
     <div v-if="state === 'DONE'" class="translation-container">
       <a-button type="primary" @click="handlePrint">打印</a-button>
@@ -44,16 +49,26 @@ import { WorkerEventData } from '@/typings';
 import { parseHtml } from '@/core/parseHtml';
 import WordList from './components/WordList.vue';
 import { IWordsResult } from '@/core/translate/youdao';
-import ChoiseFile from './components/ChoiseFile.vue';
+import SelectFile from './components/SelectFile.vue';
 import SettingsPanel from './components/SettingsPanel.vue';
 
-const {
-  data, post,
-} = useWebWorker(workerUrl);
+const { data, post } = useWebWorker(workerUrl);
 
 const state = ref<FileState>('NO_FILE');
 
+const files = ref<FileList>();
+
+const onChangeFile = (fileList: FileList) => {
+  files.value = fileList;
+  state.value = 'SELECTING_FILE';
+};
+
 const rawWordList = ref<IWordsResult>([]);
+
+const startMakeBook = () => {
+  if (!files.value?.length) return;
+  post({ type: 'split-word', payload: files.value } as WorkerEventData);
+};
 
 // useWebWorker 封装了事件处理，这里的 watch 就相当于 onmessage
 watch(data, (newValue) => {

@@ -8,7 +8,6 @@ import { readFile } from './readFile';
 import { parseSrt } from './parseSrt';
 import { parseMarkdownToHtml } from './parseMarkdown';
 import { wordFrequencySort } from './wordFrequencySort';
-import { translateWords } from './translate/youdao';
 
 // 解析 HTML 需要借助主线程渲染到 dom，所以这里需要一个池子，用来存储去解析的 html
 const parseHTMLPool: Map<string, boolean> = new Map();
