@@ -1,54 +1,57 @@
 <template>
   <div class="page-container" :class="{ print: state === 'PRINT' }">
-    <div v-if="state === 'NO_FILE'" class="choise-container">
-      <Plus class="icon" />
-      <span class="text-btn" @click="open({ accept: '.srt, .md, .txt', reset: true, directory: false })">选择文件</span>
-      <span>/</span>
-      <span class="text-btn" @click="open({ reset: true, directory: true })">文件夹</span>
-    </div>
+    <div v-if="state === 'NO_FILE'" class="app-title">制作一个单词本</div>
+    <div v-if="state === 'NO_FILE'" class="sub-title">从下面选择几个文件或文件夹开始吧</div>
+    <ChoiseFile :state="state" />
+    <BookList v-if="state === 'NO_FILE'" style="margin-top: 40px;" />
     <div v-if="state === 'DONE'" class="translation-container">
       <a-button type="primary" @click="handlePrint">打印</a-button>
     </div>
-    <!-- <BookList /> -->
     <WordList
       class="word-list-container"
       :raw-word-list="rawWordList"
       :state="state"
       @on-translation-done="onTranslationDone"
     />
+
+    <HamburgerButton class="settings-btn" size="28" @click="openSettings = true" />
+    <a-drawer
+      v-model:open="openSettings"
+      root-class-name="settings-drawer-root-class"
+      :width="420"
+      :closable="false"
+    >
+      <template #title>
+        <div class="settings-title">
+          <div class="title">配置</div>
+          <Close class="close-settings-btn" size="24" @click="openSettings = false" />
+        </div>
+      </template>
+      <SettingsPanel />
+    </a-drawer>
   </div>
 </template>
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue';
-import { Plus } from '@icon-park/vue-next';
-import { useFileDialog, useWebWorker } from '@vueuse/core';
+import { HamburgerButton, Close } from '@icon-park/vue-next';
+import { useWebWorker } from '@vueuse/core';
 // @ts-ignore
 import workerUrl from '../../core/worker?worker=file-chooser';
 
-// import BookList from './components/BookList.vue';
+import BookList from './components/BookList.vue';
 import { FileState } from './types';
 import { WorkerEventData } from '@/typings';
 import { parseHtml } from '@/core/parseHtml';
 import WordList from './components/WordList.vue';
 import { IWordsResult } from '@/core/translate/youdao';
+import ChoiseFile from './components/ChoiseFile.vue';
+import SettingsPanel from './components/SettingsPanel.vue';
 
 const {
   data, post,
 } = useWebWorker(workerUrl);
 
 const state = ref<FileState>('NO_FILE');
-
-const {
-  open, onChange,
-} = useFileDialog();
-
-onChange((fileList) => {
-  if (!fileList || fileList.length === 0) {
-    return;
-  }
-  console.log({ fileList });
-  post({ type: 'split-word', payload: fileList } as WorkerEventData);
-});
 
 const rawWordList = ref<IWordsResult>([]);
 
@@ -79,56 +82,44 @@ const handlePrint = () => {
     window.print();
   });
 };
+
+const openSettings = ref(false);
 </script>
 
 <style lang="scss" scoped>
 .page-container {
+  position: relative;
   display: flex;
+  flex-direction: column;
   gap: 36px;
-  align-items: stretch;
-  justify-content: space-between;
+  align-items: center;
   height: 100vh;
-  min-height: 400px;
   padding: 32px 60px;
-  overflow: hidden;
+  overflow: hidden auto;
   background: $bg-100;
 
-  .choise-container {
-    display: flex;
-    flex: 0 0 300px;
-    gap: 4px;
-    align-items: center;
-    width: 300px;
-    height: 72px;
-    padding: 0 20px;
-    margin-top: 240px;
+  .app-title {
+    margin-top: 72px;
+    margin-bottom: 16px;
+    font-size: 60px;
+    font-weight: 900;
+    color: $text-200;
+    letter-spacing: 2px;
+    background: linear-gradient(315deg, $primary-200 25%, $accent-100);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .sub-title {
     font-size: 20px;
-    background: $bg-200;
-    border-radius: 28px;
+    color: $text-300;
+  }
 
-    .icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      margin-right: 8px;
-      font-size: 28px;
-      line-height: 28px;
-      color: $primary-300;
-      vertical-align: middle;
-      background: $accent-200;
-      border-radius: 8px;
-    }
-
-    .text-btn {
-      cursor: pointer;
-      transition: font-size 0.2s;
-
-      &:hover {
-        font-size: 1.2em;
-      }
-    }
+  .settings-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
   }
 
   .word-list-container {
@@ -148,6 +139,31 @@ const handlePrint = () => {
       max-width: 100%;
       height: auto;
       overflow-y: visible;
+    }
+  }
+}
+</style>
+<style lang="scss">
+.settings-drawer-root-class {
+
+  .ant-drawer-header,
+  .ant-drawer-body {
+    background: $bg-100;
+  }
+
+  .settings-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+
+    .title {
+      font-size: 20px;
+    }
+
+    .close-settings-btn {
+      margin-right: 4px;
+      cursor: pointer;
     }
   }
 }

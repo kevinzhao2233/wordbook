@@ -21,6 +21,10 @@ const andvTheme: ThemeConfig = {
     colorError: '#fb5228',
     colorText: '#000000',
     colorTextSecondary: '#2c2c2c',
+
+    colorBgContainer: '#f7eedd',
+    colorBgElevated: '#f7eedd',
+    colorBorderBg: '#f7eedd',
   },
 };
 

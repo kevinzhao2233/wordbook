@@ -10,8 +10,16 @@ import '../../utils/axios';
 export type IWordsResult = Merge<IWord, Partial<ITranslateResult>>[]
 
 export const translateWords = async (words: IWord[], cb: (result: IWordsResult) => void) => {
-  const appKey = '36ca3ad0c96e371e';
-  const key = 'LVMX92sWVBws39qxNuG6iqxiXLQz8xIz';
+  let appKey = '';
+  let key = '';
+  const settingsStr = localStorage.getItem('wordbook::settings');
+  if (settingsStr) {
+    const settings = JSON.parse(settingsStr);
+    if (settings.accouts.youdao.appKey && settings.accouts.youdao.key) {
+      appKey = settings.accouts.youdao.appKey;
+      key = settings.accouts.youdao.key;
+    }
+  }
   const from = 'en';
   const to = 'zh-CHS';
 
