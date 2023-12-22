@@ -19,7 +19,12 @@
       @on-translation-done="onTranslationDone"
     />
 
-    <HamburgerButton class="settings-btn" size="28" @click="openSettings = true" />
+    <HamburgerButton
+      v-if="state !== 'PRINT'"
+      class="settings-btn"
+      size="28"
+      @click="openSettings = true"
+    />
     <a-drawer
       v-model:open="openSettings"
       root-class-name="settings-drawer-root-class"
