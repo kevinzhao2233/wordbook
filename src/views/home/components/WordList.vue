@@ -74,6 +74,8 @@ watch(() => props.state, (newVal) => {
       startTrans();
     });
   }
+}, {
+  immediate: true,
 });
 
 const startTrans = async () => {

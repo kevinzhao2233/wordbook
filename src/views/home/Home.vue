@@ -13,6 +13,7 @@
       <a-button type="primary" @click="handlePrint">打印</a-button>
     </div>
     <WordList
+      v-if="['IN_TRANSLATION', 'DONE', 'PRINT'].includes(state)"
       class="word-list-container"
       :raw-word-list="rawWordList"
       :state="state"
@@ -136,7 +137,7 @@ const openSettings = ref(false);
   }
 
   .settings-btn {
-    position: absolute;
+    position: fixed;
     top: 24px;
     right: 24px;
     cursor: pointer;
