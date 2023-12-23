@@ -139,7 +139,7 @@ const chooseSentenceWays = [
     value: 'short',
   },
   {
-    label: '从较短的五个句子中随机选择',
+    label: '从最短的五个句子中随机选择',
     value: 'random',
   },
 ];
@@ -169,6 +169,7 @@ const chooseSentenceWays = [
       font-size: 16px;
       color: #ffffff;
       cursor: pointer;
+      user-select: none;
       background: $primary-200;
       border-radius: 10px;
     }
@@ -178,7 +179,7 @@ const chooseSentenceWays = [
     min-height: 120px;
     max-height: 240px;
     padding-right: 20px;
-    margin-right: -23px;
+    margin-right: -31px;
     overflow: hidden auto;
 
     .file-item {
@@ -301,7 +302,7 @@ const chooseSentenceWays = [
 
   &.selecting_file {
     width: 420px;
-    padding: 20px 24px 32px;
+    padding: 20px 32px 32px;
     margin-top: 120px;
     background: $bg-200;
     border-radius: 20px;
