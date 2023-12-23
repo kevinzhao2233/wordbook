@@ -68,7 +68,7 @@
       <div v-if="props.state === 'SPLITTING'" class="progress-info">拆分单词</div>
       <div v-if="props.state === 'IN_TRANSLATION'" class="progress-info">
         <span>翻译单词和句子</span>
-        <span class="value">{{ translationProgress }} <span class="separator">/</span> 3435</span>
+        <span class="value">{{ translationProgress }} <span class="separator">/</span> {{ neetTranslateNum }}</span>
       </div>
       <div class="progress-bar-group">
         <div class="progress-bar">
@@ -97,6 +97,7 @@ import SelectFile from './SelectFile.vue';
 interface IProps {
   state: FileState;
   translationProgress: number;
+  neetTranslateNum: number;
 }
 const props = withDefaults(defineProps<IProps>(), { });
 

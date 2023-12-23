@@ -36,20 +36,24 @@ export const wordFrequencySort = (originTokens: IOriginToken[][]) => {
     }
   });
 
+  const santenceSet = new Set();
+
   // 去重并依照词频排序的所有词
   const words: IWord[] = Object.entries(wordMap)
     .sort((a, b) => b[1].frequency - a[1].frequency)
     .map(([word, info], idx) => {
       const originSentenceList = Array.from(info.originSentenceSet);
+      const displaySentence = getRandomSentence(findShortestFive(originSentenceList));
+      santenceSet.add(displaySentence);
       return {
         word,
         frequency: info.frequency,
         No: idx + 1,
         originSentenceList,
         // displaySentence: findShortestSentence(originSentenceList),
-        displaySentence: getRandomSentence(findShortestFive(originSentenceList)),
+        displaySentence,
       };
     });
 
-  return words;
+  return { words, santenceNum: santenceSet.size };
 };

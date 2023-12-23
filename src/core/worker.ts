@@ -56,10 +56,11 @@ const handleSplitWord = async (fileList: FileList) => {
 };
 
 const generateWordBook = (tokens: IOriginToken[][]) => {
-  const words = wordFrequencySort(tokens);
+  const { words, santenceNum } = wordFrequencySort(tokens);
+
   postMessageToMain({
     type: 'split-word:done',
-    payload: words,
+    payload: { words, santenceNum },
   });
 };
 

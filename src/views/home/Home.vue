@@ -6,6 +6,7 @@
       v-if="['NO_FILE', 'SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION'].includes(state)"
       class="operator-panel"
       :state="state"
+      :neet-translate-num="neetTranslateNum"
       :translation-progress="translationProgress"
       @on-change-file="onChangeFile"
       @on-start="startMakeBook"
@@ -74,6 +75,8 @@ const onChangeFile = (fileList: FileList) => {
 
 const rawWordList = ref<IWordsResult>([]);
 
+const neetTranslateNum = ref(0);
+
 const startMakeBook = () => {
   if (!files.value?.length) return;
   post({ type: 'split-word', payload: files.value } as WorkerEventData);
@@ -90,7 +93,8 @@ watch(data, (newValue) => {
     state.value = 'SPLITTING';
   }
   if (newValue.type === 'split-word:done') {
-    rawWordList.value = newValue.payload;
+    rawWordList.value = newValue.payload.words;
+    neetTranslateNum.value = newValue.payload.santenceNum + newValue.payload.words.length;
     state.value = 'IN_TRANSLATION';
     terminate();
   }
