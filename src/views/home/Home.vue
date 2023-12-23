@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container" :class="{ print: state === 'PRINT' }">
+  <div class="page-container" :class="state.toLocaleLowerCase()">
     <div v-if="state === 'NO_FILE'" class="app-title">制作一个单词本</div>
     <div v-if="state === 'NO_FILE'" class="sub-title">从下面选择几个文件或文件夹开始吧</div>
     <SelectFile
@@ -58,7 +58,7 @@ import { IWordsResult } from '@/core/translate/youdao';
 import SelectFile from './components/SelectFile.vue';
 import SettingsPanel from './components/SettingsPanel.vue';
 
-const { data, post } = useWebWorker(workerUrl);
+const { data, post, terminate } = useWebWorker(workerUrl);
 
 const state = ref<FileState>('NO_FILE');
 
@@ -89,6 +89,7 @@ watch(data, (newValue) => {
   if (newValue.type === 'split-word:done') {
     rawWordList.value = newValue.payload;
     state.value = 'IN_TRANSLATION';
+    terminate();
   }
 });
 
@@ -156,7 +157,6 @@ const openSettings = ref(false);
     background: #ffffff;
 
     .word-list-container {
-      flex: 1;
       max-width: 100%;
       height: auto;
       overflow-y: visible;
