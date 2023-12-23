@@ -22,7 +22,7 @@
       <div class="divider" />
       <div class="form-item">
         <div class="label">使用词典</div>
-        <a-dropdown>
+        <a-dropdown placement="bottomRight">
           <div class="dropdown">
             {{ dictionarys.find(item => item.value === formState.useDictionary)?.label }}
             &nbsp;<Down class="down-icon" />
@@ -40,7 +40,7 @@
       </div>
       <div class="form-item">
         <div class="label">单词所在的句子</div>
-        <a-dropdown>
+        <a-dropdown placement="bottomRight">
           <div class="dropdown">
             {{ chooseSentenceWays.find(item => item.value === formState.chooseSentenceWay)?.label }}
               &nbsp;<Down class="down-icon" />
