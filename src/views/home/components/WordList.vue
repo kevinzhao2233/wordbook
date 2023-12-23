@@ -28,7 +28,7 @@
         </div>
         <div class="no">
           <div class="label">No.</div>
-          <div class="value">{{ item.No }}</div>
+          <div class="value">{{ idx + 1 }}</div>
         </div>
       </div>
       <p v-if="item.isTranslated" class="paraphrase-container">
@@ -38,7 +38,7 @@
         </template>
       </p>
       <p class="origin-sentence thin">
-        {{ findTheShortestSentence(item.originSentenceList) }}
+        {{ item.displaySentence }}
       </p>
     </div>
   </div>
@@ -93,16 +93,6 @@ const startTrans = async () => {
   }, (progress) => {
     emits('onTranslationProgress', progress);
   });
-};
-
-const findTheShortestSentence = (sentenceList: string[]) => {
-  let shortestSentence = sentenceList[0];
-  for (let i = 1; i < sentenceList.length; i += 1) {
-    if (sentenceList[i].length < shortestSentence.length) {
-      shortestSentence = sentenceList[i];
-    }
-  }
-  return shortestSentence;
 };
 
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];

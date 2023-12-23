@@ -1,28 +1,10 @@
 import { split } from 'sentence-splitter';
 import Tokenizer from 'wink-tokenizer';
+import { isWord, removeSymbols } from '@/utils/helper';
 
 export interface IOriginToken extends Tokenizer.Token {
   originSentence: string;
 }
-
-/**
- * 判断是否是词
- * @param word 要被判断的文本
- */
-const isWord = (token: Tokenizer.Token) => {
-  if (token.tag !== 'word') {
-    return false;
-  }
-  if (token.value.length < 2) {
-    return false;
-  }
-  // @ts-ignore
-  // eslint-disable-next-line eqeqeq
-  if (token.value == Number(token.value)) {
-    return false;
-  }
-  return true;
-};
 
 /**
  * 分词
@@ -44,11 +26,10 @@ export const splitWord = (article: string) => {
     .forEach((sentence) => {
       const tokens = tokenizerInst.tokenize(sentence);
       const effectiveTokens = tokens.filter((token) => isWord(token));
-      // TODO 可能需要对 you're 这样的情况做拼接
 
       originTokens.push(effectiveTokens.map((item) => ({
         ...item,
-        originSentence: sentence,
+        originSentence: removeSymbols(sentence),
       })));
     });
 

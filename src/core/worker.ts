@@ -31,13 +31,13 @@ const handleSplitWord = async (fileList: FileList) => {
     if (res.type === 'txt') {
       const { pureSentenceNodes, originTokens } = splitWord(res.raw);
       allOriginTokens.push(...originTokens);
-      console.log('分词完成，txt', { pureSentenceNodes, originTokens });
+      console.log('分词完成，txt\n', 'pureSentenceNodes: ', pureSentenceNodes, '\noriginTokens: ', originTokens);
     }
     if (res.type === 'srt') {
       const text = parseSrt(res.raw);
       const { pureSentenceNodes, originTokens } = splitWord(text);
       allOriginTokens.push(...originTokens);
-      console.log('分词完成，srt', { pureSentenceNodes, originTokens });
+      console.log('分词完成，srt\n', 'pureSentenceNodes: ', pureSentenceNodes, '\noriginTokens: ', originTokens);
     }
     if (res.type === 'md') {
       const html = parseMarkdownToHtml(res.raw);
