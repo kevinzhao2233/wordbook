@@ -56,6 +56,7 @@ const props = withDefaults(defineProps<IProps>(), { });
 
 interface IEmits {
   (e: 'onTranslationDone'): void;
+  (e: 'onTranslationProgress', progress: number): void;
 }
 const emits = defineEmits<IEmits>();
 
@@ -89,6 +90,8 @@ const startTrans = async () => {
       isTranslating.value = false;
       sortWitchLetter();
     });
+  }, (progress) => {
+    emits('onTranslationProgress', progress);
   });
 };
 

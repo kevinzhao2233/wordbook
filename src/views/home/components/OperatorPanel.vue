@@ -1,7 +1,9 @@
 <template>
   <div class="operator-container" :class="props.state.toLocaleLowerCase()">
+    <SelectFile v-if="props.state === 'NO_FILE'" @on-select-file="selectFile" @on-select-folder="selectFolder" />
+
     <template v-if="props.state === 'SELECTING_FILE'">
-      <div v-if="files && files.length > 0" class="title">
+      <div class="title">
         <span>选择的文件</span>
         <a-dropdown>
           <div class="small-add-btn">继续添加</div>
@@ -59,7 +61,27 @@
       <div class="make-btn" @click="emits('onStart')">开始制作单词本</div>
     </template>
 
-    <SelectFile v-if="props.state === 'NO_FILE'" @on-select-file="selectFile" @on-select-folder="selectFolder" />
+    <div v-if="['SPLITTING', 'IN_TRANSLATION'].includes(state)" class="making">
+      <div class="making-title">
+        <span>正在制作单词本...</span>
+      </div>
+      <div v-if="props.state === 'SPLITTING'" class="progress-info">拆分单词</div>
+      <div v-if="props.state === 'IN_TRANSLATION'" class="progress-info">
+        <span>翻译单词和句子</span>
+        <span class="value">{{ translationProgress }} <span class="separator">/</span> 3435</span>
+      </div>
+      <div class="progress-bar-group">
+        <div class="progress-bar">
+          <div class="progress-bar-inner" :style="{ width: `${splitProgress}%` }" />
+        </div>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" :style="{ width: `${translationProgress}%` }" />
+        </div>
+      </div>
+      <div class="alert">
+        翻译进度受词典接口限制，可能进度会非常慢，还请耐心等待。
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -67,13 +89,14 @@ import {
   CloseSmall, FileText, Down,
 } from '@icon-park/vue-next';
 import { useFileDialog } from '@vueuse/core';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { FileState } from '../types';
 import { isRepeatFile, arrayToFileList } from '@/utils/helper';
 import SelectFile from './SelectFile.vue';
 
 interface IProps {
   state: FileState;
+  translationProgress: number;
 }
 const props = withDefaults(defineProps<IProps>(), { });
 
@@ -121,6 +144,27 @@ const formState = ref({
   useDictionary: 'youdao',
   chooseSentenceWay: 'short',
 });
+
+const splitProgress = ref(0);
+
+watch(
+  () => props.state,
+  (state, oldState) => {
+    let interval = 0;
+    if (state === 'SPLITTING' && oldState === 'SELECTING_FILE') {
+      splitProgress.value = 10;
+      interval = setInterval(() => {
+        splitProgress.value += (100 - splitProgress.value) / 2.5;
+        if (splitProgress.value >= 100) {
+          clearInterval(interval);
+        }
+      }, 300);
+    }
+    if (state === 'IN_TRANSLATION') {
+      splitProgress.value = 100;
+    }
+  },
+);
 
 const dictionarys = [
   {
@@ -262,13 +306,80 @@ const chooseSentenceWays = [
     border-radius: 14px;
   }
 
-  &.selecting_file {
+  &.selecting_file,
+  &.splitting,
+  &.in_translation {
     width: 420px;
     padding: 20px 32px 32px;
-    margin-top: 120px;
     background: $bg-200;
     border-radius: 20px;
     box-shadow: inset 0 0 0 1px $bg-300, 0 4px 12px -4px $bg-300;
+
+    .making {
+
+      .progress-info {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+
+        .value {
+          font-size: 16px;
+          font-weight: 500;
+
+          .separator {
+            color: rgba($text-300, 0.6);
+          }
+        }
+      }
+
+      .progress-bar-group {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: space-between;
+        height: 16px;
+        margin: 12px 0 24px;
+        overflow: hidden;
+
+        .progress-bar {
+          flex: 1;
+          height: 100%;
+          border: 2px solid $accent-100;
+
+          &:first-child {
+            flex: 1;
+            border-radius: 6px 2px 2px 6px;
+          }
+
+          &:last-child {
+            flex: 2;
+            border-radius: 2px 6px 6px 2px;
+          }
+
+          .progress-bar-inner {
+            height: 100%;
+            background: $accent-100;
+            transition: width 0.32s ease-out;
+          }
+        }
+      }
+
+      .making-title {
+        margin-bottom: 20px;
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: 2px;
+        background: linear-gradient(315deg, $primary-200 25%, $accent-100);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .alert {
+        padding: 12px;
+        background: rgba($accent-200, 0.6);
+        border-radius: 6px;
+      }
+    }
   }
 }
 </style>

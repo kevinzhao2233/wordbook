@@ -9,7 +9,7 @@ import '../../utils/axios';
 
 export type IWordsResult = Merge<IWord, Partial<ITranslateResult>>[]
 
-export const translateWords = async (words: IWord[], cb: (result: IWordsResult) => void) => {
+export const translateWords = async (words: IWord[], cb: (result: IWordsResult) => void, progressCb: (progress: number) => void) => {
   let appKey = '';
   let key = '';
   const settingsStr = localStorage.getItem('wordbook::settings');
@@ -25,7 +25,7 @@ export const translateWords = async (words: IWord[], cb: (result: IWordsResult) 
 
   let idx = 0;
 
-  const testNum = 1;
+  const testNum = 10;
 
   const timer = setInterval(() => {
     if (idx >= testNum) {
@@ -63,12 +63,13 @@ export const translateWords = async (words: IWord[], cb: (result: IWordsResult) 
             ...result,
           };
         }
+        progressCb(idx + 1);
       }
       if (idx >= testNum) {
         cb(words);
       }
     });
-  }, 200);
+  }, 2000);
 };
 
 const truncate = (q: string) => {

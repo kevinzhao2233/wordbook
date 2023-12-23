@@ -2,9 +2,11 @@
   <div class="page-container" :class="state.toLocaleLowerCase()">
     <div v-if="state === 'NO_FILE'" class="app-title">制作一个单词本</div>
     <div v-if="state === 'NO_FILE'" class="sub-title">从下面选择几个文件或文件夹开始吧</div>
-    <SelectFile
-      v-if="['NO_FILE', 'SELECTING_FILE'].includes(state)"
+    <OperatorPanel
+      v-if="['NO_FILE', 'SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION'].includes(state)"
+      class="operator-panel"
       :state="state"
+      :translation-progress="translationProgress"
       @on-change-file="onChangeFile"
       @on-start="startMakeBook"
     />
@@ -13,11 +15,12 @@
       <a-button type="primary" @click="handlePrint">打印</a-button>
     </div>
     <WordList
-      v-if="['IN_TRANSLATION', 'DONE', 'PRINT'].includes(state)"
+      v-if="['SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION', 'DONE', 'PRINT'].includes(state)"
       class="word-list-container"
       :raw-word-list="rawWordList"
       :state="state"
       @on-translation-done="onTranslationDone"
+      @on-translation-progress="onTranslationProgress"
     />
 
     <HamburgerButton
@@ -55,7 +58,7 @@ import { WorkerEventData } from '@/typings';
 import { parseHtml } from '@/core/parseHtml';
 import WordList from './components/WordList.vue';
 import { IWordsResult } from '@/core/translate/youdao';
-import SelectFile from './components/SelectFile.vue';
+import OperatorPanel from './components/OperatorPanel.vue';
 import SettingsPanel from './components/SettingsPanel.vue';
 
 const { data, post, terminate } = useWebWorker(workerUrl);
@@ -95,6 +98,11 @@ watch(data, (newValue) => {
 
 const onTranslationDone = () => {
   state.value = 'DONE';
+};
+
+const translationProgress = ref(0);
+const onTranslationProgress = (progress: number) => {
+  translationProgress.value = progress;
 };
 
 const handlePrint = () => {
@@ -149,6 +157,8 @@ const openSettings = ref(false);
     max-width: 720px;
     height: 100%;
     overflow-y: auto;
+    border: 2px solid $bg-300;
+    border-radius: 14px;
   }
 
   &.print {
@@ -160,6 +170,26 @@ const openSettings = ref(false);
       max-width: 100%;
       height: auto;
       overflow-y: visible;
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+  &.selecting_file,
+  &.splitting,
+  &.in_translation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .operator-panel {
+      flex: 0 0 420px;
+      margin-bottom: 150px;
+    }
+
+    .word-list-container {
+      flex: 1;
+      min-width: 500px;
     }
   }
 }
