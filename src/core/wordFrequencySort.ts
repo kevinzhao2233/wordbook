@@ -1,5 +1,6 @@
 import { findShortestFive, findShortestSentence, getRandomSentence } from '@/utils/helper';
 import { IOriginToken } from './splitWord';
+import { IOptions } from '@/views/home/types';
 
 export interface IWordMap {
   [key: string]: {
@@ -16,7 +17,7 @@ export interface IWord {
   displaySentence: string;
 }
 
-export const wordFrequencySort = (originTokens: IOriginToken[][]) => {
+export const wordFrequencySort = (originTokens: IOriginToken[][], options: IOptions) => {
   const wordMap: IWordMap = {};
 
   originTokens.flat().forEach((token) => {
@@ -43,14 +44,19 @@ export const wordFrequencySort = (originTokens: IOriginToken[][]) => {
     .sort((a, b) => b[1].frequency - a[1].frequency)
     .map(([word, info], idx) => {
       const originSentenceList = Array.from(info.originSentenceSet);
-      const displaySentence = getRandomSentence(findShortestFive(originSentenceList));
+      let displaySentence = '';
+      if (options.chooseSentenceWay === 'randomFromShortestFive') {
+        displaySentence = getRandomSentence(findShortestFive(originSentenceList));
+      }
+      if (options.chooseSentenceWay === 'shortest') {
+        displaySentence = findShortestSentence(originSentenceList) || '';
+      }
       santenceSet.add(displaySentence);
       return {
         word,
         frequency: info.frequency,
         No: idx + 1,
         originSentenceList,
-        // displaySentence: findShortestSentence(originSentenceList),
         displaySentence,
       };
     });

@@ -67,7 +67,6 @@ const wordList = ref<IWordsResult>([]);
 
 const isTranslating = ref(false);
 
-// TODO 应该监听状态，变化之后再翻译，而不是监听文件
 watch(() => props.state, (newVal) => {
   if (newVal === 'IN_TRANSLATION') {
     nextTick(() => {

@@ -54,7 +54,7 @@ import { useWebWorker } from '@vueuse/core';
 import workerUrl from '../../core/worker?worker=file-chooser';
 
 import BookList from './components/BookList.vue';
-import { FileState } from './types';
+import { FileState, IOptions } from './types';
 import { WorkerEventData } from '@/typings';
 import { parseHtml } from '@/core/parseHtml';
 import WordList from './components/WordList.vue';
@@ -77,9 +77,9 @@ const rawWordList = ref<IWordsResult>([]);
 
 const neetTranslateNum = ref(0);
 
-const startMakeBook = () => {
+const startMakeBook = (options: IOptions) => {
   if (!files.value?.length) return;
-  post({ type: 'split-word', payload: files.value } as WorkerEventData);
+  post({ type: 'split-word', payload: { files: files.value, options } } as WorkerEventData);
 };
 
 // useWebWorker 封装了事件处理，这里的 watch 就相当于 onmessage

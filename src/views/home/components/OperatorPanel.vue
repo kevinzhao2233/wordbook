@@ -58,7 +58,7 @@
           </template>
         </a-dropdown>
       </div>
-      <div class="make-btn" @click="emits('onStart')">开始制作单词本</div>
+      <div class="make-btn" @click="emits('onStart', toRaw(formState))">开始制作单词本</div>
     </template>
 
     <div v-if="['SPLITTING', 'IN_TRANSLATION'].includes(state)" class="making">
@@ -89,8 +89,8 @@ import {
   CloseSmall, FileText, Down,
 } from '@icon-park/vue-next';
 import { useFileDialog } from '@vueuse/core';
-import { ref, watch } from 'vue';
-import { FileState } from '../types';
+import { ref, watch, toRaw } from 'vue';
+import { FileState, IOptions } from '../types';
 import { isRepeatFile, arrayToFileList } from '@/utils/helper';
 import SelectFile from './SelectFile.vue';
 
@@ -103,7 +103,7 @@ const props = withDefaults(defineProps<IProps>(), { });
 
 interface IEmits {
   (e: 'onChangeFile', fileList: FileList): void;
-  (e: 'onStart'): void;
+  (e: 'onStart', options: IOptions): void;
 }
 const emits = defineEmits<IEmits>();
 
@@ -141,9 +141,9 @@ onChange((fileList) => {
   }
 });
 
-const formState = ref({
+const formState = ref<IOptions>({
   useDictionary: 'youdao',
-  chooseSentenceWay: 'short',
+  chooseSentenceWay: 'randomFromShortestFive',
 });
 
 const splitProgress = ref(0);
@@ -177,11 +177,11 @@ const dictionarys = [
 const chooseSentenceWays = [
   {
     label: '始终选择最短的',
-    value: 'short',
+    value: 'shortest',
   },
   {
-    label: '从最短的五个句子中随机选择',
-    value: 'random',
+    label: '从最短的五个句子中随机',
+    value: 'randomFromShortestFive',
   },
 ];
 
