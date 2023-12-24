@@ -45,14 +45,15 @@
 </template>
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue';
-import { IWordsResult, translateWords } from '@/core/translate/youdao';
+import { IWordsResult, translateWords } from '@/core/translate';
 import { FileState } from '../types';
 
 interface IProps {
   rawWordList: IWordsResult;
   state: FileState;
+  useDictionary?: string;
 }
-const props = withDefaults(defineProps<IProps>(), { });
+const props = withDefaults(defineProps<IProps>(), { useDictionary: 'youdao' });
 
 interface IEmits {
   (e: 'onTranslationDone'): void;
@@ -71,17 +72,20 @@ watch(() => props.state, (newVal) => {
   if (newVal === 'IN_TRANSLATION') {
     nextTick(() => {
       wordList.value = props.rawWordList;
-      startTrans();
+      const copyWordList: IWordsResult = JSON.parse(JSON.stringify(wordList.value));
+      setTimeout(() => {
+        startTrans(copyWordList);
+      }, 3000);
     });
   }
 }, {
   immediate: true,
 });
 
-const startTrans = async () => {
+const startTrans = async (copyWordList: IWordsResult) => {
   isTranslating.value = true;
   console.log('开始翻译啦', wordList.value);
-  translateWords(JSON.parse(JSON.stringify(wordList.value)), (newWordList) => {
+  translateWords(copyWordList, props.useDictionary, (newWordList) => {
     console.log('翻译完啦', newWordList);
     emits('onTranslationDone');
     wordList.value = newWordList;

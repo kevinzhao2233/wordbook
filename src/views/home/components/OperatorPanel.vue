@@ -75,7 +75,7 @@
           <div class="progress-bar-inner" :style="{ width: `${splitProgress}%` }" />
         </div>
         <div class="progress-bar">
-          <div class="progress-bar-inner" :style="{ width: `${translationProgress}%` }" />
+          <div class="progress-bar-inner" :style="{ width: `${translationProgress / neetTranslateNum * 100}%` }" />
         </div>
       </div>
       <div class="alert">

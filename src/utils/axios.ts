@@ -31,7 +31,7 @@ export interface AxiosJsonp extends AxiosStatic {
         }
       }
     }
-    ret += `&_time=${Date.now()}`;
+    // ret += `&_time=${Date.now()}`;
   }
   JSONP.src = `${url}?callback=${callback}${ret}`;
   return new Promise((resolve, reject) => {

@@ -18,6 +18,7 @@
     <WordList
       v-if="['SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION', 'DONE', 'PRINT'].includes(state)"
       class="word-list-container"
+      :use-dictionary="userOptions?.useDictionary"
       :raw-word-list="rawWordList"
       :state="state"
       @on-translation-done="onTranslationDone"
@@ -58,7 +59,7 @@ import { FileState, IOptions } from './types';
 import { WorkerEventData } from '@/typings';
 import { parseHtml } from '@/core/parseHtml';
 import WordList from './components/WordList.vue';
-import { IWordsResult } from '@/core/translate/youdao';
+import { IWordsResult } from '@/core/translate';
 import OperatorPanel from './components/OperatorPanel.vue';
 import SettingsPanel from './components/SettingsPanel.vue';
 
@@ -77,8 +78,11 @@ const rawWordList = ref<IWordsResult>([]);
 
 const neetTranslateNum = ref(0);
 
+const userOptions = ref<IOptions>();
+
 const startMakeBook = (options: IOptions) => {
   if (!files.value?.length) return;
+  userOptions.value = options;
   post({ type: 'split-word', payload: { files: files.value, options } } as WorkerEventData);
 };
 

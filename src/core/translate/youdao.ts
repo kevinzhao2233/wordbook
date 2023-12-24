@@ -1,15 +1,22 @@
+import { customAlphabet } from 'nanoid';
+import localforage from 'localforage';
 import { SHA256, enc } from 'crypto-js';
 import axios from 'axios';
-import { Merge } from 'type-fest';
 import { IWord } from '../wordFrequencySort';
 // eslint-disable-next-line import/no-duplicates
 import { AxiosJsonp } from '../../utils/axios';
 // eslint-disable-next-line import/no-duplicates
 import '../../utils/axios';
+import { ITranslateResult, IWordsResult } from '.';
+import { simulateSetInterval } from '@/utils/helper';
 
-export type IWordsResult = Merge<IWord, Partial<ITranslateResult>>[]
+const nanoid = customAlphabet('1234567890abcdef', 32);
 
-export const translateWords = async (words: IWord[], cb: (result: IWordsResult) => void, progressCb: (progress: number) => void) => {
+export const translateByYoudao = async (
+  words: IWord[],
+  resultCb: (result: IWordsResult) => void,
+  progressCb: (progress: number) => void,
+) => {
   let appKey = '';
   let key = '';
   const settingsStr = localStorage.getItem('wordbook::settings');
@@ -25,14 +32,14 @@ export const translateWords = async (words: IWord[], cb: (result: IWordsResult) 
 
   let idx = 0;
 
-  const testNum = 10;
+  const testNum = words.length;
 
-  const timer = setInterval(() => {
+  const stopInterval = simulateSetInterval(() => {
     if (idx >= testNum) {
-      clearInterval(timer);
+      stopInterval();
       return;
     }
-    const salt = (new Date()).getTime();
+    const salt = nanoid();
     const curtime = Math.round(new Date().getTime() / 1000);
     // 批量查的时候 query 为数组
     const query = words[idx].word;
@@ -62,14 +69,23 @@ export const translateWords = async (words: IWord[], cb: (result: IWordsResult) 
             ...words[wordIndex],
             ...result,
           };
+          localforage.setItem(words[wordIndex].word, {
+            word: words[wordIndex].word,
+            explains: result.explains,
+            usPhonetic: result.usPhonetic,
+            ukPhonetic: result.ukPhonetic,
+          });
         }
         progressCb(idx + 1);
+      } else {
+        console.log(res, JSON.stringify(res));
+        stopInterval();
       }
       if (idx >= testNum) {
-        cb(words);
+        resultCb(words);
       }
     });
-  }, 2000);
+  }, 500);
 };
 
 const truncate = (q: string) => {
@@ -77,17 +93,6 @@ const truncate = (q: string) => {
   if (len <= 20) return q;
   return q.substring(0, 10) + len + q.substring(len - 10, len);
 };
-
-interface ITranslateResult {
-  originQuery: string;
-  explains: {
-    pos: string;
-    trans: string;
-  }[];
-  isTranslated: boolean;
-  usPhonetic: string;
-  ukPhonetic: string;
-}
 
 const populateYoudaoRes = (res: any) => {
   const result: ITranslateResult = {

@@ -92,3 +92,28 @@ export const getRandomSentence = (shortestFive: string[]) => {
   const randomIndex = Math.floor(Math.random() * shortestFive.length);
   return shortestFive[randomIndex];
 };
+
+/**
+ * 模拟 setInterval
+ * @param callback 回调函数
+ * @param interval 间隔时间
+ */
+export const simulateSetInterval = (callback: () => void, interval: number) => {
+  let running = true;
+
+  function run() {
+    if (!running) {
+      return; // 终止循环
+    }
+
+    callback();
+    setTimeout(run, interval);
+  }
+
+  setTimeout(run, interval);
+
+  // 提供一个终止函数
+  return function stop() {
+    running = false;
+  };
+};
