@@ -1,7 +1,7 @@
 <template>
   <div class="page-container" :class="state.toLocaleLowerCase()">
-    <div v-if="state === 'NO_FILE'" class="app-title">我知道，你喜欢纸质的单词本</div>
-    <div v-if="state === 'NO_FILE'" class="sub-title">在这里，你只需要上传一些文件，即可轻松制作个性化的单词本。单词会根据出现的频率进行排序，每个单词会提供在原文中的句子。最后，你还可以打印生成的单词本。</div>
+    <div v-if="state === 'NO_FILE'" class="app-title">我知道，你喜欢纸质的单词书</div>
+    <div v-if="state === 'NO_FILE'" class="sub-title">在这里，你只需要上传一些文件，即可轻松制作个性化的单词书。单词会根据出现的频率进行排序，每个单词会提供在原文中的句子。最后，你还可以打印生成的单词书。</div>
     <OperatorPanel
       v-if="['NO_FILE', 'SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION'].includes(state)"
       class="operator-panel"

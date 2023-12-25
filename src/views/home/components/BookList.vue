@@ -1,7 +1,7 @@
 <template>
   <div class="book-list">
     <h2 class="title">
-      或者看看现成的单词本
+      或者看看现成的单词书
     </h2>
     <div class="list">
       <div v-for="book in books" :key="book.name" class="book">

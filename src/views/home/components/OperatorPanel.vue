@@ -58,12 +58,12 @@
           </template>
         </a-dropdown>
       </div>
-      <div class="make-btn" @click="emits('onStart', toRaw(formState))">开始制作单词本</div>
+      <div class="make-btn" @click="emits('onStart', toRaw(formState))">开始制作单词书</div>
     </template>
 
     <div v-if="['SPLITTING', 'IN_TRANSLATION'].includes(state)" class="making">
       <div class="making-title">
-        <span>正在制作单词本...</span>
+        <span>正在制作单词书...</span>
       </div>
       <div v-if="props.state === 'SPLITTING'" class="progress-info">拆分单词</div>
       <div v-if="props.state === 'IN_TRANSLATION'" class="progress-info">

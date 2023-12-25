@@ -52,7 +52,7 @@ const handleSplitWord = async (fileList: FileList) => {
       });
     }
   }
-  // 没有 md，这里直接生成单词本，若有则需要等待后面 parse-html:done 事件
+  // 没有 md，这里直接生成单词书，若有则需要等待后面 parse-html:done 事件
   if (parseHTMLPool.size === 0) {
     generateWordBook(allOriginTokens);
   }
