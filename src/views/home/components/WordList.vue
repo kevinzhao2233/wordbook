@@ -38,7 +38,7 @@
         </template>
       </p>
       <p class="origin-sentence thin">
-        {{ item.displaySentence }}
+        {{ item.displaySentence }}&nbsp;{{ item.displaySentenceTranslated }}
       </p>
     </div>
   </div>

@@ -98,7 +98,7 @@ watch(data, (newValue) => {
   }
   if (newValue.type === 'split-word:done') {
     rawWordList.value = newValue.payload.words;
-    neetTranslateNum.value = newValue.payload.santenceNum + newValue.payload.words.length;
+    neetTranslateNum.value = newValue.payload.words.length * 2;
     state.value = 'IN_TRANSLATION';
     terminate();
   }

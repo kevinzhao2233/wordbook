@@ -15,6 +15,7 @@ export interface IWord {
   No: number;
   originSentenceList: string[];
   displaySentence: string;
+  displaySentenceTranslated?: string;
 }
 
 export const wordFrequencySort = (originTokens: IOriginToken[][], options: IOptions) => {

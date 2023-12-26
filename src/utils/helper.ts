@@ -101,19 +101,35 @@ export const getRandomSentence = (shortestFive: string[]) => {
 export const simulateSetInterval = (callback: () => void, interval: number) => {
   let running = true;
 
-  function run() {
+  function run(isTriggerNext: boolean) {
     if (!running) {
       return; // 终止循环
     }
 
     callback();
-    setTimeout(run, interval);
+
+    if (!isTriggerNext) {
+      // 立即开始下一次循环
+      timeoutId = setTimeout(run, interval);
+    }
   }
 
-  setTimeout(run, interval);
+  let timeoutId = setTimeout(run, interval);
 
   // 提供一个终止函数
-  return function stop() {
+  function stop() {
     running = false;
-  };
+    clearTimeout(timeoutId);
+  }
+
+  // 提供一个手动触发下一次循环的函数
+  function triggerNext() {
+    if (running) {
+      // 清除上一次的定时器并立即开始下一次循环
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(run(true) as any, 0);
+    }
+  }
+
+  return { stop, triggerNext };
 };
