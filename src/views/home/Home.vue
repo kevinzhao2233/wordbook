@@ -88,7 +88,7 @@ const startMakeBook = (options: IOptions) => {
 
 // useWebWorker 封装了事件处理，这里的 watch 就相当于 onmessage
 watch(data, (newValue) => {
-  console.log('watch data', newValue);
+  console.log('worker 向主线程发送消息', newValue);
   if (newValue.type === 'parse-html') {
     const raw = parseHtml(newValue.payload.html);
     post({ type: 'parse-html:done', payload: { id: newValue.payload.id, raw } } as WorkerEventData);
@@ -115,7 +115,6 @@ const onTranslationProgress = (progress: number) => {
 
 const handlePrint = () => {
   state.value = 'PRINT';
-  console.log('打印');
   nextTick(() => {
     window.print();
   });

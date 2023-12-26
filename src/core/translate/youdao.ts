@@ -52,7 +52,7 @@ export const translateByYoudao = async (
           }
           progressCb(idx);
         } else {
-          console.log(res, JSON.stringify(res));
+          console.warn(res, JSON.stringify(res));
           stop();
         }
         if (idx >= wordsLength) {
@@ -101,7 +101,7 @@ export const translateByYoudao = async (
               }
               progressCb(idx);
             } else {
-              console.log(res, JSON.stringify(res));
+              console.warn(res, JSON.stringify(res));
               stop();
             }
             if (idx >= wordsLength) {

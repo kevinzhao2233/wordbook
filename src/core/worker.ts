@@ -30,17 +30,14 @@ const handleSplitWord = async (fileList: FileList) => {
   const readFileFnList = Array.from(fileList).map((file) => readFile(file));
 
   for await (const res of readFileFnList) {
-    console.log('读取文件完成，文件类型：', res.type);
     if (res.type === 'txt') {
       const { pureSentenceNodes, originTokens } = splitWord(res.raw);
       allOriginTokens.push(...originTokens);
-      console.log('分词完成，txt\n', 'pureSentenceNodes: ', pureSentenceNodes, '\noriginTokens: ', originTokens);
     }
     if (res.type === 'srt') {
       const text = parseSrt(res.raw);
       const { pureSentenceNodes, originTokens } = splitWord(text);
       allOriginTokens.push(...originTokens);
-      console.log('分词完成，srt\n', 'pureSentenceNodes: ', pureSentenceNodes, '\noriginTokens: ', originTokens);
     }
     if (res.type === 'md') {
       const html = parseMarkdownToHtml(res.raw);
@@ -88,7 +85,6 @@ onmessage = function (event: MessageEvent<WorkerEventData>) {
     if (isAllDone) {
       const { originTokens } = splitWord(tmpMdRaws.join('\n'));
       allOriginTokens.push(...originTokens);
-      console.log('分词完成，md', { originTokens });
       generateWordBook(allOriginTokens);
     }
   }

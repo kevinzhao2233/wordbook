@@ -84,9 +84,7 @@ watch(() => props.state, (newVal) => {
 
 const startTrans = async (copyWordList: IWordsResult) => {
   isTranslating.value = true;
-  console.log('开始翻译啦', wordList.value);
   translateWords(copyWordList, props.useDictionary, (newWordList) => {
-    console.log('翻译完啦', newWordList);
     emits('onTranslationDone');
     wordList.value = newWordList;
     nextTick(() => {
@@ -120,7 +118,6 @@ const sortWitchLetter = () => {
     }
     wordListByLetter.value[letter].push(item);
   });
-  console.log(wordListByLetter.value);
 };
 </script>
 

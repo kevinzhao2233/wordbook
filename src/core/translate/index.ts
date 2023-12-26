@@ -57,12 +57,9 @@ export const translateWords = async (
 ) => {
   const localWordsResult = await translateByLocal(words);
 
-  console.log(localWordsResult);
-
   progressCb(localWordsResult.length);
 
   const needTranslateWords = localWordsResult.filter((word) => !word.isTranslated);
-  console.log('needTranslateWords', needTranslateWords);
 
   const translateSentence = () => {
     translateByYoudao(localWordsResult, false, (result) => {
