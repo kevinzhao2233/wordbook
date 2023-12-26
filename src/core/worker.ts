@@ -31,12 +31,12 @@ const handleSplitWord = async (fileList: FileList) => {
 
   for await (const res of readFileFnList) {
     if (res.type === 'txt') {
-      const { pureSentenceNodes, originTokens } = splitWord(res.raw);
+      const { originTokens } = splitWord(res.raw);
       allOriginTokens.push(...originTokens);
     }
     if (res.type === 'srt') {
       const text = parseSrt(res.raw);
-      const { pureSentenceNodes, originTokens } = splitWord(text);
+      const { originTokens } = splitWord(text);
       allOriginTokens.push(...originTokens);
     }
     if (res.type === 'md') {

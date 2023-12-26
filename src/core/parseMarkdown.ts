@@ -1,5 +1,4 @@
 import MarkdownIt from 'markdown-it';
-import containerPlugin from 'markdown-it-container';
 import anchorPlugin from 'markdown-it-anchor';
 import { slugify } from '@mdit-vue/shared';
 
