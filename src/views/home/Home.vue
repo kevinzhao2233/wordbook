@@ -3,18 +3,16 @@
     <div v-if="state === 'NO_FILE'" class="app-title">我知道，你喜欢纸质的单词书</div>
     <div v-if="state === 'NO_FILE'" class="sub-title">在这里，你只需要上传一些文件，即可轻松制作个性化的单词书。单词会根据出现的频率进行排序，每个单词会提供在原文中的句子。最后，你还可以打印生成的单词书。</div>
     <OperatorPanel
-      v-if="['NO_FILE', 'SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION'].includes(state)"
+      v-if="['NO_FILE', 'SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION', 'DONE'].includes(state)"
       class="operator-panel"
       :state="state"
       :neet-translate-num="neetTranslateNum"
       :translation-progress="translationProgress"
       @on-change-file="onChangeFile"
       @on-start="startMakeBook"
+      @on-print="handlePrint"
     />
     <BookList v-if="state === 'NO_FILE'" style="margin-top: 40px;" />
-    <div v-if="state === 'DONE'" class="translation-container">
-      <a-button type="primary" @click="handlePrint">打印</a-button>
-    </div>
     <WordList
       v-if="['SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION', 'DONE', 'PRINT'].includes(state)"
       class="word-list-container"
@@ -121,6 +119,13 @@ const handlePrint = () => {
 };
 
 const openSettings = ref(false);
+
+// 监听打印完成事件
+window.onafterprint = () => {
+  if (state.value === 'PRINT') {
+    state.value = 'DONE';
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -186,7 +191,8 @@ const openSettings = ref(false);
 
   &.selecting_file,
   &.splitting,
-  &.in_translation {
+  &.in_translation,
+  &.done {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -225,6 +231,17 @@ const openSettings = ref(false);
       margin-right: 4px;
       cursor: pointer;
     }
+  }
+}
+
+@media print {
+  body #print-operation {
+    visibility: hidden;
+  }
+
+  @page {
+    margin: 1cm 0.8cm 1cm 1.2cm;
+    size: auto;
   }
 }
 </style>

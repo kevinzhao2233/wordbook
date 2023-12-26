@@ -82,6 +82,16 @@
         翻译进度受词典接口限制，可能进度会非常慢，还请耐心等待。
       </div>
     </div>
+
+    <div v-if="props.state === 'DONE'" class="print">
+      <div class="print-title">
+        <span>你的单词书已经生成喽</span>
+      </div>
+      <div class="print-desc">
+        你现在可以点击下面的打印按钮打印单词书，或者在打印预览窗口中导出为 PDF
+      </div>
+      <div class="make-btn" @click="emits('onPrint')">这就打印</div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -104,6 +114,7 @@ const props = withDefaults(defineProps<IProps>(), { });
 interface IEmits {
   (e: 'onChangeFile', fileList: FileList): void;
   (e: 'onStart', options: IOptions): void;
+  (e: 'onPrint'): void;
 }
 const emits = defineEmits<IEmits>();
 
@@ -309,7 +320,8 @@ const chooseSentenceWays = [
 
   &.selecting_file,
   &.splitting,
-  &.in_translation {
+  &.in_translation,
+  &.done {
     width: 420px;
     padding: 20px 32px 32px;
     background: $bg-200;
@@ -368,17 +380,26 @@ const chooseSentenceWays = [
       .making-title {
         margin-bottom: 20px;
         font-size: 18px;
+        font-weight: 600;
+        color: $accent-100;
         text-align: center;
-        letter-spacing: 2px;
-        background: linear-gradient(315deg, $primary-200 25%, $accent-100);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
       }
 
       .alert {
         padding: 12px;
         background: rgba($accent-200, 0.6);
         border-radius: 6px;
+      }
+    }
+
+    .print {
+
+      .print-title {
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-weight: 600;
+        color: $accent-100;
+        text-align: center;
       }
     }
   }

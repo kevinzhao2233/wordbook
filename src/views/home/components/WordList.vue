@@ -1,5 +1,5 @@
 <template>
-  <div class="result">
+  <div id="print-result-container" class="result" :class="props.state.toLocaleLowerCase()">
     <div v-if="wordList.length" class="directory">
       <div class="directory-title">词汇表</div>
       <template v-for="(item, idx) in letters" :key="item">
@@ -44,7 +44,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { nextTick, ref, watch } from 'vue';
+import {
+  nextTick, ref, watch, shallowRef, triggerRef,
+} from 'vue';
 import { IWordsResult, translateWords } from '@/core/translate';
 import { FileState } from '../types';
 
@@ -64,7 +66,7 @@ const emits = defineEmits<IEmits>();
 // TODO 需要放到设置中
 const stageInterval = ref(40);
 
-const wordList = ref<IWordsResult>([]);
+const wordList = shallowRef<IWordsResult>([]);
 
 const isTranslating = ref(false);
 
@@ -97,7 +99,7 @@ const startTrans = async (copyWordList: IWordsResult) => {
 };
 
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-const wordListByLetter = ref<{ [key: string]: IWordsResult }>({});
+const wordListByLetter = shallowRef<{ [key: string]: IWordsResult }>({});
 
 const sortWitchLetter = () => {
   // 对wordList.value 中每一个 word 按照字母顺序排序，比如 a b c d
@@ -117,12 +119,12 @@ const sortWitchLetter = () => {
       wordListByLetter.value[letter] = [];
     }
     wordListByLetter.value[letter].push(item);
+    triggerRef(wordListByLetter);
   });
 };
 </script>
 
 <style lang="scss" scoped>
-
 .thin {
   font-weight: 300;
   color: rgba(#000000, 0.6);
@@ -254,5 +256,9 @@ const sortWitchLetter = () => {
       }
     }
   }
+
+  // &.print {
+  //   padding: 1cm 0.8cm 1cm 1.2cm;
+  // }
 }
 </style>
