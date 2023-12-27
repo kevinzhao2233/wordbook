@@ -2,7 +2,7 @@
   <div class="operator-container" :class="props.state.toLocaleLowerCase()">
     <SelectFile v-if="props.state === 'NO_FILE'" @on-select-file="selectFile" @on-select-folder="selectFolder" />
 
-    <template v-if="props.state === 'SELECTING_FILE'">
+    <div v-if="props.state === 'SELECTING_FILE'" class="selecting-file">
       <div class="title">
         <span>选择的文件</span>
         <a-dropdown>
@@ -59,7 +59,7 @@
         </a-dropdown>
       </div>
       <div class="make-btn" @click="emits('onStart', toRaw(formState))">开始制作单词书</div>
-    </template>
+    </div>
 
     <div v-if="['SPLITTING', 'IN_TRANSLATION'].includes(state)" class="making">
       <div class="making-title">
@@ -202,105 +202,108 @@ const chooseSentenceWays = [
 .operator-container {
   transition: all 0.3s;
 
-  .title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-
-    span {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .small-add-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px 16px;
-      font-size: 16px;
-      color: #ffffff;
-      cursor: pointer;
-      user-select: none;
-      background: $primary-200;
-      border-radius: 10px;
-    }
-  }
-
-  .file-list {
-    min-height: 120px;
-    max-height: 240px;
-    padding-right: 20px;
-    margin-right: -31px;
-    overflow: hidden auto;
-
-    .file-item {
+  .selecting-file {
+    .title {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 2px 0;
+      margin-bottom: 12px;
 
-      .file-name {
-        flex: 1;
-        overflow: hidden;
-        font-size: 14px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
-        .file-icon {
-          margin-right: 4px;
-          color: $text-300;
-          vertical-align: middle;
-        }
+      span {
+        font-size: 18px;
+        font-weight: 600;
       }
 
-      .remove-btn {
+      .small-add-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left: 12px;
+        padding: 4px 16px;
+        font-size: 16px;
+        color: #ffffff;
         cursor: pointer;
-        opacity: 0;
+        user-select: none;
+        background: $primary-200;
+        border-radius: 10px;
       }
+    }
 
-      &:hover {
+    .file-list {
+      min-height: 120px;
+      max-height: 240px;
+      padding-right: 20px;
+      margin-right: -31px;
+      overflow: hidden auto;
+
+      .file-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2px 0;
+
+        .file-name {
+          flex: 1;
+          overflow: hidden;
+          font-size: 14px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+          .file-icon {
+            margin-right: 4px;
+            color: $text-300;
+            vertical-align: middle;
+          }
+        }
 
         .remove-btn {
-          opacity: 0.5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 12px;
+          cursor: pointer;
+          opacity: 0;
+        }
 
-          &:hover {
-            opacity: 1;
+        &:hover {
+          font-weight: 500;
+
+          .remove-btn {
+            opacity: 0.5;
+
+            &:hover {
+              opacity: 1;
+            }
           }
         }
       }
     }
-  }
 
-  .divider {
-    width: 100%;
-    height: 1px;
-    margin: 12px 0;
-    background: $bg-300;
-  }
-
-  .form-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 36px;
-    font-size: 15px;
-
-    .label {
-      color: rgba($text-200, 0.9);
+    .divider {
+      width: 100%;
+      height: 1px;
+      margin: 12px 0;
+      background: $bg-300;
     }
 
-    .dropdown {
-      cursor: pointer;
-    }
+    .form-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 36px;
+      font-size: 15px;
 
-    .down-icon {
-      color: $text-300;
-      vertical-align: middle;
+      .label {
+        color: rgba($text-200, 0.9);
+      }
+
+      .dropdown {
+        cursor: pointer;
+      }
+
+      .down-icon {
+        color: $text-300;
+        vertical-align: middle;
+      }
     }
   }
 
