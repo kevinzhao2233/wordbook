@@ -1,5 +1,6 @@
 <template>
   <div class="page-container" :class="state.toLocaleLowerCase()">
+    <Header v-if="state!== 'PRINT'" :state="state" />
     <div v-if="state === 'NO_FILE'" class="app-title">我知道，你喜欢纸质的单词书</div>
     <div v-if="state === 'NO_FILE'" class="sub-title">在这里，你只需要上传一些文件，即可轻松制作个性化的单词书。单词会根据出现的频率进行排序，每个单词会提供在原文中的句子。最后，你还可以打印生成的单词书。</div>
     <OperatorPanel
@@ -22,32 +23,10 @@
       @on-translation-done="onTranslationDone"
       @on-translation-progress="onTranslationProgress"
     />
-
-    <HamburgerButton
-      v-if="state !== 'PRINT'"
-      class="settings-btn"
-      size="28"
-      @click="openSettings = true"
-    />
-    <a-drawer
-      v-model:open="openSettings"
-      root-class-name="settings-drawer-root-class"
-      :width="420"
-      :closable="false"
-    >
-      <template #title>
-        <div class="settings-title">
-          <div class="title">配置</div>
-          <Close class="close-settings-btn" size="24" @click="openSettings = false" />
-        </div>
-      </template>
-      <SettingsPanel />
-    </a-drawer>
   </div>
 </template>
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue';
-import { HamburgerButton, Close } from '@icon-park/vue-next';
 import { useWebWorker } from '@vueuse/core';
 // @ts-ignore
 import workerUrl from '../../core/worker?worker=file-chooser';
@@ -59,7 +38,7 @@ import { parseHtml } from '@/core/parser/parseHtml';
 import WordList from './components/WordList.vue';
 import { IWordsResult } from '@/core/translate';
 import OperatorPanel from './components/OperatorPanel.vue';
-import SettingsPanel from './components/SettingsPanel.vue';
+import Header from './components/Header.vue';
 
 const { data, post, terminate } = useWebWorker(workerUrl);
 
@@ -118,8 +97,6 @@ const handlePrint = () => {
   });
 };
 
-const openSettings = ref(false);
-
 // 监听打印完成事件
 window.onafterprint = () => {
   if (state.value === 'PRINT') {
@@ -157,13 +134,6 @@ window.onafterprint = () => {
     font-size: 20px;
     color: $text-300;
     text-align: center;
-  }
-
-  .settings-btn {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    cursor: pointer;
   }
 
   .word-list-container {
