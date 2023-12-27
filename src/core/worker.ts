@@ -5,8 +5,8 @@ import { nanoid } from 'nanoid';
 import { WorkerEventData } from '@/typings';
 import { IOriginToken, splitWord } from './splitWord';
 import { readFile } from './readFile';
-import { parseSrt } from './parseSrt';
-import { parseMarkdownToHtml } from './parseMarkdown';
+import { parseSrt } from './parser/parseSrt';
+import { parseMarkdownToHtml } from './parser/parseMarkdown';
 import { wordFrequencySort } from './wordFrequencySort';
 import { IOptions } from '@/views/home/types';
 

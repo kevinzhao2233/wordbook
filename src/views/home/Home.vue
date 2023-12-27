@@ -55,7 +55,7 @@ import workerUrl from '../../core/worker?worker=file-chooser';
 import BookList from './components/BookList.vue';
 import { FileState, IOptions } from './types';
 import { WorkerEventData } from '@/typings';
-import { parseHtml } from '@/core/parseHtml';
+import { parseHtml } from '@/core/parser/parseHtml';
 import WordList from './components/WordList.vue';
 import { IWordsResult } from '@/core/translate';
 import OperatorPanel from './components/OperatorPanel.vue';
@@ -245,3 +245,4 @@ window.onafterprint = () => {
   }
 }
 </style>
+@/core/parser/parseHtml
