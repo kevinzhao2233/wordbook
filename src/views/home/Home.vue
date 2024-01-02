@@ -106,11 +106,9 @@ watch(data, (newValue) => {
   // 翻译完成
   if (newValue.type === 'split-word:done') {
     terminate();
-    nextTick(() => {
-      rawWordList.value = newValue.payload.words;
-      neetTranslateNum.value = newValue.payload.words.length * 2;
-      state.value = 'IN_TRANSLATION';
-    });
+    state.value = 'IN_TRANSLATION';
+    rawWordList.value = newValue.payload.words;
+    neetTranslateNum.value = newValue.payload.words.length * 2;
   }
 });
 

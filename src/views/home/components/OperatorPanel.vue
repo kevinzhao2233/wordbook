@@ -176,11 +176,12 @@ watch(
     if (state === 'SPLITTING' && oldState === 'SELECTING_FILE') {
       splitProgress.value = 10;
       interval = setInterval(() => {
-        splitProgress.value += (100 - splitProgress.value) / 2.5;
+        splitProgress.value += (100 - splitProgress.value) / 4;
+        console.log(splitProgress.value);
         if (splitProgress.value >= 100) {
           clearInterval(interval);
         }
-      }, 200);
+      }, 100);
     }
     if (state === 'IN_TRANSLATION') {
       splitProgress.value = 100;
@@ -385,7 +386,7 @@ const chooseSentenceWays = [
           .progress-bar-inner {
             height: 100%;
             background: $accent-100;
-            transition: width 0.32s ease-out;
+            transition: width 0.3s ease-out;
           }
         }
       }

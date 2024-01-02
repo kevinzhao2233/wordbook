@@ -20,6 +20,10 @@ export type IWordResult = Merge<IWord, Partial<ITranslateResult>>
 
 export type IWordsResult = IWordResult[]
 
+/**
+ * 从本地缓存中获取单词翻译结果
+ * @param words 单词列表
+ */
 const translateByLocal = async (words: IWord[]) => {
   const localWordsResult: IWordResult[] = [];
   const localWords = await localforage.keys();
@@ -61,6 +65,9 @@ export const translateWords = async (
 
   const needTranslateWords = localWordsResult.filter((word) => !word.isTranslated);
 
+  /**
+   * 翻译句子
+   */
   const translateSentence = () => {
     translateByYoudao(localWordsResult, false, (result) => {
       const resultMap = new Map(result.map((word) => [word.word, word]));
@@ -74,6 +81,10 @@ export const translateWords = async (
       progressCb(localWordsResult.length + progress);
     });
   };
+
+  /**
+   * 调用接口，翻译单词
+   */
   if (needTranslateWords.length) {
     if (useDictionary === 'youdao') {
       translateByYoudao(needTranslateWords, true, (result) => {
@@ -85,10 +96,11 @@ export const translateWords = async (
         }
         translateSentence();
       }, (progress) => {
-        progressCb(localWordsResult.length + progress);
+        progressCb(progress);
       });
     }
   } else {
+    // 如果所有单词都从本地翻译了，则直接翻译句子
     translateSentence();
   }
 };

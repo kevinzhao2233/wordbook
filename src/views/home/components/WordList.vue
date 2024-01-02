@@ -73,14 +73,14 @@ const wordList = shallowRef<IWordsResult>([]);
 
 watch(() => props.state, (newVal) => {
   if (newVal === 'IN_TRANSLATION') {
-    nextTick(() => {
+    setTimeout(() => {
       wordList.value = props.rawWordList;
       const copyWordList: IWordsResult = JSON.parse(JSON.stringify(wordList.value));
       // 界面要渲染单词，可能会卡住，导致翻译的进程出现问题，所以这里等待一会儿
       setTimeout(() => {
         startTrans(copyWordList);
       }, props.rawWordList.length / 2);
-    });
+    }, 300);
   }
 }, {
   immediate: true,
