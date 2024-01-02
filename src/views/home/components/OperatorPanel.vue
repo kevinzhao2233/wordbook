@@ -130,6 +130,9 @@ const selectFolder = () => {
   open({ directory: true });
 };
 
+/**
+ * 监听文件选择，选择好后向父组件传递文件列表
+ */
 onChange((fileList) => {
   if (!fileList || fileList.length === 0) {
     return;
@@ -152,13 +155,20 @@ onChange((fileList) => {
   }
 });
 
+/**
+ * 表单数据
+ */
 const formState = ref<IOptions>({
   useDictionary: 'youdao',
   chooseSentenceWay: 'randomFromShortestFive',
 });
 
+/**
+ * 分词进度
+ */
 const splitProgress = ref(0);
 
+// 分词的过程，构造一个假的进度条，虽然可以做成真的，就是感觉没必要，需要频繁在两个进程之间通信
 watch(
   () => props.state,
   (state, oldState) => {
@@ -170,7 +180,7 @@ watch(
         if (splitProgress.value >= 100) {
           clearInterval(interval);
         }
-      }, 300);
+      }, 200);
     }
     if (state === 'IN_TRANSLATION') {
       splitProgress.value = 100;

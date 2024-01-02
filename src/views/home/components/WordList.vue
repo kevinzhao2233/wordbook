@@ -64,33 +64,37 @@ interface IEmits {
 const emits = defineEmits<IEmits>();
 
 // TODO 需要放到设置中
+/**
+ * 40 个单词一组
+ */
 const stageInterval = ref(40);
 
 const wordList = shallowRef<IWordsResult>([]);
-
-const isTranslating = ref(false);
 
 watch(() => props.state, (newVal) => {
   if (newVal === 'IN_TRANSLATION') {
     nextTick(() => {
       wordList.value = props.rawWordList;
       const copyWordList: IWordsResult = JSON.parse(JSON.stringify(wordList.value));
+      // 界面要渲染单词，可能会卡住，导致翻译的进程出现问题，所以这里等待一会儿
       setTimeout(() => {
         startTrans(copyWordList);
-      }, 3000);
+      }, props.rawWordList.length / 2);
     });
   }
 }, {
   immediate: true,
 });
 
+/**
+ * 开始翻译
+ * @param copyWordList 待翻译的单词列表
+ */
 const startTrans = async (copyWordList: IWordsResult) => {
-  isTranslating.value = true;
   translateWords(copyWordList, props.useDictionary, (newWordList) => {
     emits('onTranslationDone');
     wordList.value = newWordList;
     nextTick(() => {
-      isTranslating.value = false;
       sortWitchLetter();
     });
   }, (progress) => {
@@ -101,6 +105,9 @@ const startTrans = async (copyWordList: IWordsResult) => {
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const wordListByLetter = shallowRef<{ [key: string]: IWordsResult }>({});
 
+/**
+ * 按照字母顺序对单词列表进行排序
+ */
 const sortWitchLetter = () => {
   // 对wordList.value 中每一个 word 按照字母顺序排序，比如 a b c d
   const copyWordList: IWordsResult = JSON.parse(JSON.stringify(wordList.value));

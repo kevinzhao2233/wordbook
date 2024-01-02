@@ -42,54 +42,102 @@ import Header from './components/Header.vue';
 
 const { data, post, terminate } = useWebWorker(workerUrl);
 
+/**
+ * 页面状态
+ */
 const state = ref<FileState>('NO_FILE');
 
+/**
+ * 选择的文件列表
+ */
 const files = ref<FileList>();
 
+/**
+ * 选择文件
+ * @param fileList 文件列表
+ */
 const onChangeFile = (fileList: FileList) => {
   files.value = fileList;
   state.value = 'SELECTING_FILE';
 };
 
+/**
+ * 解析后，但未翻译的的单词列表
+ */
 const rawWordList = ref<IWordsResult>([]);
 
+/**
+ * 总共需要翻译的数量
+ */
 const neetTranslateNum = ref(0);
 
+/**
+ * 用户设置
+ */
 const userOptions = ref<IOptions>();
 
+/**
+ * 开始制作单词书
+ * @param options 用户设置
+ */
 const startMakeBook = (options: IOptions) => {
   if (!files.value?.length) return;
   userOptions.value = options;
   post({ type: 'split-word', payload: { files: files.value, options } } as WorkerEventData);
 };
 
-// useWebWorker 封装了事件处理，这里的 watch 就相当于 onmessage
+/**
+ * 监听 worker 发送的消息
+ * useWebWorker 封装了事件处理，这里的 watch 就相当于 onmessage
+ */
 watch(data, (newValue) => {
   console.log('worker 向主线程发送消息', newValue);
+  // 借助主线程解析 html
   if (newValue.type === 'parse-html') {
     const raw = parseHtml(newValue.payload.html);
     post({ type: 'parse-html:done', payload: { id: newValue.payload.id, raw } } as WorkerEventData);
   }
+  // 开始翻译
   if (newValue.type === 'split-word:start') {
-    state.value = 'SPLITTING';
+    nextTick(() => {
+      state.value = 'SPLITTING';
+    });
   }
+  // 翻译完成
   if (newValue.type === 'split-word:done') {
-    rawWordList.value = newValue.payload.words;
-    neetTranslateNum.value = newValue.payload.words.length * 2;
-    state.value = 'IN_TRANSLATION';
     terminate();
+    nextTick(() => {
+      rawWordList.value = newValue.payload.words;
+      neetTranslateNum.value = newValue.payload.words.length * 2;
+      state.value = 'IN_TRANSLATION';
+    });
   }
 });
 
+/**
+ * 翻译完成
+ */
 const onTranslationDone = () => {
-  state.value = 'DONE';
+  nextTick(() => {
+    state.value = 'DONE';
+  });
 };
 
+/**
+ * 翻译进度
+ */
 const translationProgress = ref(0);
+
+/**
+ * 更新翻译进度
+ */
 const onTranslationProgress = (progress: number) => {
   translationProgress.value = progress;
 };
 
+/**
+ * 执行打印，弹出打印窗口
+ */
 const handlePrint = () => {
   state.value = 'PRINT';
   nextTick(() => {
@@ -97,7 +145,9 @@ const handlePrint = () => {
   });
 };
 
-// 监听打印完成事件
+/**
+ * 打印完成后，恢复页面状态
+ */
 window.onafterprint = () => {
   if (state.value === 'PRINT') {
     state.value = 'DONE';
