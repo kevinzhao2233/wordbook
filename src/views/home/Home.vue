@@ -93,7 +93,6 @@ const startMakeBook = (options: IOptions) => {
       return;
     }
     message.error('请先为选择的词典添加账号');
-    console.log(headerRef.value);
     if (headerRef.value) {
       headerRef.value.setOpenSettings(true);
     }
