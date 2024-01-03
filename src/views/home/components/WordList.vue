@@ -18,9 +18,9 @@
       </h2>
       <div class="main-info">
         <div class="word">{{ item.word }}</div>
-        <div v-if="item.isTranslated" class="pronounce">
+        <div v-if="item.isTranslated && item.usPhonetic" class="pronounce">
           <span class="thin">美</span>&nbsp;/<span class="font-Gilroy">{{ item.usPhonetic }}</span>/</div>
-        <div v-if="item.isTranslated" class="pronounce">
+        <div v-if="item.isTranslated && item.ukPhonetic" class="pronounce">
           <span class="thin">英</span>&nbsp;/<span class="font-Gilroy">{{ item.ukPhonetic }}</span>/</div>
         <div class="frequency">
           <div class="label">词频</div>
