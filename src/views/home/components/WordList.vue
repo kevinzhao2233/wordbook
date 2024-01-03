@@ -41,6 +41,9 @@
         {{ item.displaySentence }}&nbsp;{{ item.displaySentenceTranslated }}
       </p>
     </div>
+    <div v-if="isExample" class="mask">
+      <p class="desc">最终，你的单词本就会像这个示例一样。</p>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -49,6 +52,7 @@ import {
 } from 'vue';
 import { IWordsResult, translateWords } from '@/core/translate';
 import { FileState } from '../types';
+import { exampleWordList } from '@/assets/exampleWordList';
 
 interface IProps {
   rawWordList: IWordsResult;
@@ -63,6 +67,8 @@ interface IEmits {
 }
 const emits = defineEmits<IEmits>();
 
+const isExample = ref(false);
+
 // TODO 需要放到设置中
 /**
  * 40 个单词一组
@@ -72,6 +78,14 @@ const stageInterval = ref(40);
 const wordList = shallowRef<IWordsResult>([]);
 
 watch(() => props.state, (newVal) => {
+  if (['SELECTING_FILE', 'SPLITTING'].includes(newVal)) {
+    nextTick(() => {
+      wordList.value = exampleWordList;
+      isExample.value = true;
+    });
+  } else {
+    isExample.value = false;
+  }
   if (newVal === 'IN_TRANSLATION') {
     setTimeout(() => {
       wordList.value = props.rawWordList;
@@ -94,6 +108,7 @@ const startTrans = async (copyWordList: IWordsResult) => {
   translateWords(copyWordList, props.useDictionary, (newWordList) => {
     emits('onTranslationDone');
     wordList.value = newWordList;
+    console.log(newWordList);
     nextTick(() => {
       sortWitchLetter();
     });
@@ -142,6 +157,7 @@ const sortWitchLetter = () => {
 }
 
 .result {
+  position: relative;
   padding: 0 9pt;
   font-size: 9pt;
   line-height: 1.4;
@@ -261,6 +277,23 @@ const sortWitchLetter = () => {
         margin-right: 0.5em;
         color: rgba(#000000, 0.8);
       }
+    }
+  }
+
+  .mask {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba($bg-100, 0), rgba($bg-100, 1) 60%);
+
+    .desc {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      width: 100%;
+      font-size: 16px;
+      color: $primary-300;
+      text-align: center;
+      transform: translate(-50%, -50%);
     }
   }
 
