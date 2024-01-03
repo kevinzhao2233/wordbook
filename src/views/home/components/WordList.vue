@@ -52,7 +52,7 @@ import {
 } from 'vue';
 import dayjs from 'dayjs';
 import { IWordsResult, translateWords } from '@/core/translate';
-import { FileState } from '../types';
+import { FileState, IBook } from '../types';
 import { exampleWordList } from '@/assets/exampleWordList';
 
 interface IProps {
@@ -150,14 +150,15 @@ const sortWitchLetter = () => {
 
 const saveBook = () => {
   if (props.state === 'DONE') {
-    window.bookStore.setItem(String(Date.now()), {
+    const book: IBook = {
       name: `我的单词书 ${dayjs().format('YYYY-MM-DD HH:mm:ss')}`,
       createTime: Date.now(),
       useDictionary: props.useDictionary,
       wordCount: wordList.value.length,
       wordList: wordList.value,
       _version: 1,
-    });
+    };
+    window.bookStore.setItem(String(Date.now()), book);
   }
 };
 </script>

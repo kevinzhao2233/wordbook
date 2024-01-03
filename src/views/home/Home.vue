@@ -226,11 +226,13 @@ window.onafterprint = () => {
   &.done {
     display: flex;
     flex-direction: row;
+    align-items: start;
     justify-content: center;
+    padding: 72px 60px 32px;
 
     .operator-panel {
       flex: 0 0 420px;
-      margin-bottom: 150px;
+      margin-top: 0;
     }
 
     .word-list-container {

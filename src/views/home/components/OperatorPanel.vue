@@ -106,6 +106,7 @@ import { ref, watch, toRaw } from 'vue';
 import { FileState, IOptions } from '../types';
 import { isRepeatFile, arrayToFileList } from '@/utils/helper';
 import SelectFile from './SelectFile.vue';
+import { dictionarys, chooseSentenceWays } from '../consts';
 
 interface IProps {
   state: FileState;
@@ -192,25 +193,6 @@ watch(
     }
   },
 );
-
-const dictionarys = [
-  {
-    label: '有道翻译',
-    value: 'youdao',
-  },
-];
-
-const chooseSentenceWays = [
-  {
-    label: '始终选择最短的',
-    value: 'shortest',
-  },
-  {
-    label: '从最短的五个句子中随机',
-    value: 'randomFromShortestFive',
-  },
-];
-
 </script>
 
 <style lang="scss" scoped>
