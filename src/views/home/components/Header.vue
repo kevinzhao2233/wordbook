@@ -42,6 +42,14 @@ const props = withDefaults(defineProps<IProps>(), {});
 
 const openSettings = ref(false);
 
+const setOpenSettings = (open: boolean) => {
+  openSettings.value = open;
+};
+
+defineExpose({
+  setOpenSettings,
+});
+
 </script>
 
 <style lang="scss" scoped>

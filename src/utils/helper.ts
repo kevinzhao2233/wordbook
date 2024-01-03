@@ -133,3 +133,34 @@ export const simulateSetInterval = (callback: () => void, interval: number) => {
 
   return { stop, triggerNext };
 };
+
+/**
+ * 检查字典是否有账号
+ * @param dictionary 字典名称
+ * @returns boolean
+ */
+export const eheckDictionaryAccout = (dictionary: string) => {
+  try {
+    const wordbookSettingsStr = localStorage.getItem('wordbook::settings');
+    if (wordbookSettingsStr) {
+      const wordbookSettings = JSON.parse(wordbookSettingsStr);
+      if (!wordbookSettings?.accouts[dictionary]) {
+        return false;
+      }
+      const currentDictionarySettion = wordbookSettings.accouts[dictionary];
+      let hasValue = true;
+      for (const key in currentDictionarySettion) {
+        if (Object.prototype.hasOwnProperty.call(currentDictionarySettion, key)) {
+          const item = currentDictionarySettion[key];
+          if (!item && hasValue) {
+            hasValue = false;
+          }
+        }
+      }
+      return hasValue;
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
+};

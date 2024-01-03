@@ -1,6 +1,6 @@
 <template>
   <div class="page-container" :class="state.toLocaleLowerCase()">
-    <Header v-if="state!== 'PRINT'" :state="state" />
+    <Header v-if="state!== 'PRINT'" ref="headerRef" :state="state" />
     <div v-if="state === 'NO_FILE'" class="app-title">我知道，你喜欢纸质的单词书</div>
     <div v-if="state === 'NO_FILE'" class="sub-title">在这里，你只需要上传一些文件，即可轻松制作个性化的单词书。单词会根据出现的频率进行排序，每个单词会提供在原文中的句子。最后，你还可以打印生成的单词书。</div>
     <OperatorPanel
@@ -28,6 +28,7 @@
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue';
 import { useWebWorker } from '@vueuse/core';
+import { message } from 'ant-design-vue';
 // @ts-ignore
 import workerUrl from '../../core/worker?worker=file-chooser';
 
@@ -39,6 +40,9 @@ import WordList from './components/WordList.vue';
 import { IWordsResult } from '@/core/translate';
 import OperatorPanel from './components/OperatorPanel.vue';
 import Header from './components/Header.vue';
+import { eheckDictionaryAccout } from '@/utils/helper';
+
+const headerRef = ref();
 
 const { data, post, terminate } = useWebWorker(workerUrl);
 
@@ -82,8 +86,18 @@ const userOptions = ref<IOptions>();
  */
 const startMakeBook = (options: IOptions) => {
   if (!files.value?.length) return;
-  userOptions.value = options;
-  post({ type: 'split-word', payload: { files: files.value, options } } as WorkerEventData);
+  if (options.useDictionary) {
+    if (eheckDictionaryAccout(options.useDictionary)) {
+      userOptions.value = options;
+      post({ type: 'split-word', payload: { files: files.value, options } } as WorkerEventData);
+      return;
+    }
+    message.error('请先为选择的词典添加账号');
+    console.log(headerRef.value);
+    if (headerRef.value) {
+      headerRef.value.setOpenSettings(true);
+    }
+  }
 };
 
 /**
