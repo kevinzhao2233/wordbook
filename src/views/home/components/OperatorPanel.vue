@@ -87,10 +87,13 @@
       <div class="print-title">
         <span>你的单词书已经生成喽</span>
       </div>
-      <div class="print-desc">
-        你现在可以点击下面的打印按钮打印单词书，或者在打印预览窗口中导出为 PDF
-      </div>
-      <div class="make-btn" @click="emits('onPrint')">这就打印</div>
+      <p class="print-desc">
+        你现在可以点击下面的打印按钮打印单词书。
+      </p>
+      <p class="print-desc">
+        这本单词书已经为你保存到了当前浏览器，后续你可以在任意时候打开单词书，并再次打印。
+      </p>
+      <div class="make-btn" @click="emits('onPrint')">现在就打印</div>
     </div>
   </div>
 </template>
@@ -115,6 +118,7 @@ interface IEmits {
   (e: 'onChangeFile', fileList: FileList): void;
   (e: 'onStart', options: IOptions): void;
   (e: 'onPrint'): void;
+  (e: 'onExport'): void;
 }
 const emits = defineEmits<IEmits>();
 
@@ -320,15 +324,16 @@ const chooseSentenceWays = [
 
   .make-btn {
     display: flex;
-    gap: 8px;
+    flex: 1;
     align-items: center;
     justify-content: center;
     padding: 8px 20px;
-    margin-top: 20px;
+    margin-top: 24px;
     font-size: 16px;
     color: #ffffff;
     cursor: pointer;
     background: $primary-200;
+    border: 1px solid $primary-200;
     border-radius: 14px;
   }
 

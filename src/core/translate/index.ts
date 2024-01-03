@@ -1,4 +1,3 @@
-import localforage from 'localforage';
 import { Merge } from 'type-fest';
 import { IWord } from '../wordFrequencySort';
 import { translateByYoudao } from './youdao';
@@ -26,13 +25,13 @@ export type IWordsResult = IWordResult[]
  */
 const translateByLocal = async (words: IWord[]) => {
   const localWordsResult: IWordResult[] = [];
-  const localWords = await localforage.keys();
+  const localWords = await window.dictionaryStore.keys();
 
-  const LocalwordMap = new Map(localWords.map((key) => [key, true]));
+  const LocalwordMap = new Map(localWords.map((key: string) => [key, true]));
   let index = 0;
   for await (const { word } of words) {
     if (LocalwordMap.has(word)) {
-      const wordRes: ILocalWordResult | null = await localforage.getItem(word);
+      const wordRes: ILocalWordResult | null = await window.dictionaryStore.getItem(word);
       if (wordRes) {
         localWordsResult[index] = {
           ...words[index],

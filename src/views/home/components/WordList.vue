@@ -1,5 +1,5 @@
 <template>
-  <div id="print-result-container" class="result" :class="props.state.toLocaleLowerCase()">
+  <div id="print-result-container" class="result" :class="[props.state.toLocaleLowerCase(), { example: isExample }]">
     <div v-if="wordList.length" class="directory">
       <div class="directory-title">词汇表</div>
       <template v-for="(item, idx) in letters" :key="item">
@@ -50,6 +50,7 @@
 import {
   nextTick, ref, watch, shallowRef, triggerRef,
 } from 'vue';
+import dayjs from 'dayjs';
 import { IWordsResult, translateWords } from '@/core/translate';
 import { FileState } from '../types';
 import { exampleWordList } from '@/assets/exampleWordList';
@@ -108,7 +109,6 @@ const startTrans = async (copyWordList: IWordsResult) => {
   translateWords(copyWordList, props.useDictionary, (newWordList) => {
     emits('onTranslationDone');
     wordList.value = newWordList;
-    console.log(newWordList);
     nextTick(() => {
       sortWitchLetter();
     });
@@ -141,8 +141,24 @@ const sortWitchLetter = () => {
       wordListByLetter.value[letter] = [];
     }
     wordListByLetter.value[letter].push(item);
-    triggerRef(wordListByLetter);
   });
+  triggerRef(wordListByLetter);
+  nextTick(() => {
+    saveBook();
+  });
+};
+
+const saveBook = () => {
+  if (props.state === 'DONE') {
+    window.bookStore.setItem(String(Date.now()), {
+      name: `我的单词书 ${dayjs().format('YYYY-MM-DD HH:mm:ss')}`,
+      createTime: Date.now(),
+      useDictionary: props.useDictionary,
+      wordCount: wordList.value.length,
+      wordList: wordList.value,
+      _version: 1,
+    });
+  }
 };
 </script>
 
@@ -295,6 +311,10 @@ const sortWitchLetter = () => {
       text-align: center;
       transform: translate(-50%, -50%);
     }
+  }
+
+  &.example {
+    overflow: hidden !important;
   }
 
   // &.print {

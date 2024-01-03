@@ -1,5 +1,4 @@
 import { customAlphabet } from 'nanoid';
-import localforage from 'localforage';
 import { SHA256, enc } from 'crypto-js';
 import axios from 'axios';
 import { IWord } from '../wordFrequencySort';
@@ -43,7 +42,7 @@ export const translateByYoudao = async (
               ...result,
             };
             // 缓存到本地
-            localforage.setItem(words[wordIndex].word, {
+            window.dictionaryStore.setItem(words[wordIndex].word, {
               word: words[wordIndex].word,
               explains: result.explains,
               usPhonetic: result.usPhonetic,
