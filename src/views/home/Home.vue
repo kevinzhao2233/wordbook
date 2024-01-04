@@ -4,7 +4,7 @@
     <div v-if="state === 'NO_FILE'" class="app-title">我知道，你喜欢纸质的单词书</div>
     <div v-if="state === 'NO_FILE'" class="sub-title">在这里，你只需要上传一些文件，即可轻松制作个性化的单词书。单词会根据出现的频率进行排序，每个单词会提供在原文中的句子。最后，你还可以打印生成的单词书。</div>
     <OperatorPanel
-      v-if="['NO_FILE', 'SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION', 'DONE'].includes(state)"
+      v-if="['NO_FILE', 'SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION', 'DONE', 'PREVIEW'].includes(state)"
       class="operator-panel"
       :state="state"
       :neet-translate-num="neetTranslateNum"
@@ -13,9 +13,9 @@
       @on-start="startMakeBook"
       @on-print="handlePrint"
     />
-    <BookList v-if="state === 'NO_FILE'" style="margin-top: 40px;" />
+    <BookList v-if="state === 'NO_FILE'" style="margin-top: 40px;" @on-preview="onPreviewBook" />
     <WordList
-      v-if="['SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION', 'DONE', 'PRINT'].includes(state)"
+      v-if="['SELECTING_FILE', 'SPLITTING', 'IN_TRANSLATION', 'DONE', 'PRINT', 'PREVIEW'].includes(state)"
       class="word-list-container"
       :use-dictionary="userOptions?.useDictionary"
       :raw-word-list="rawWordList"
@@ -33,7 +33,7 @@ import { message } from 'ant-design-vue';
 import workerUrl from '../../core/worker?worker=file-chooser';
 
 import BookList from './components/BookList.vue';
-import { FileState, IOptions } from './types';
+import { FileState, IBook, IOptions } from './types';
 import { WorkerEventData } from '@/typings';
 import { parseHtml } from '@/core/parser/parseHtml';
 import WordList from './components/WordList.vue';
@@ -164,6 +164,14 @@ window.onafterprint = () => {
     state.value = 'DONE';
   }
 };
+
+/**
+ * 预览单词书
+ */
+const onPreviewBook = (book: IBook) => {
+  state.value = 'PREVIEW';
+  rawWordList.value = book.wordList;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -223,7 +231,8 @@ window.onafterprint = () => {
   &.selecting_file,
   &.splitting,
   &.in_translation,
-  &.done {
+  &.done,
+  &.preview {
     display: flex;
     flex-direction: row;
     align-items: start;

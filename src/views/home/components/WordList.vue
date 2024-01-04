@@ -97,6 +97,12 @@ watch(() => props.state, (newVal) => {
       }, props.rawWordList.length / 2);
     }, 300);
   }
+  if (newVal === 'PREVIEW') {
+    wordList.value = props.rawWordList;
+    nextTick(() => {
+      sortWitchLetter();
+    });
+  }
 }, {
   immediate: true,
 });

@@ -5,7 +5,12 @@
         我生成的单词书
       </h2>
       <div class="list">
-        <Book v-for="book in myBooks" :key="book.name" :book="book" />
+        <Book
+          v-for="book in myBooks"
+          :key="book.name"
+          :book="book"
+          @click="emits('on-preview', book)"
+        />
       </div>
     </template>
     <template v-if="publicBooks.length > 0">
@@ -13,7 +18,12 @@
         这里还有现成的单词书
       </h2>
       <div class="list">
-        <Book v-for="book in publicBooks" :key="book.name" :book="book" />
+        <Book
+          v-for="book in publicBooks"
+          :key="book.name"
+          :book="book"
+          @click="emits('on-preview', book)"
+        />
       </div>
     </template>
   </div>
@@ -22,6 +32,11 @@
 import { ref, shallowRef, triggerRef } from 'vue';
 import Book from './Book.vue';
 import { IBook } from '../types';
+
+interface IEmits {
+  (e: 'on-preview', book: IBook): void;
+}
+const emits = defineEmits<IEmits>();
 
 const myBooks = shallowRef<IBook[]>([]);
 

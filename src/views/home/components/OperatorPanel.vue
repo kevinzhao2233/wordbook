@@ -62,7 +62,7 @@
     </div>
 
     <div v-if="['SPLITTING', 'IN_TRANSLATION'].includes(state)" class="making">
-      <div class="making-title">
+      <div class="left-title">
         <span>正在制作你的单词书...</span>
       </div>
       <div class="alert">
@@ -84,7 +84,7 @@
     </div>
 
     <div v-if="props.state === 'DONE'" class="print">
-      <div class="print-title">
+      <div class="center-title">
         <span>你的单词书已经生成喽</span>
       </div>
       <p class="print-desc">
@@ -94,6 +94,13 @@
         这本单词书已经为你保存到了当前浏览器，后续你可以在任意时候打开单词书，并再次打印。
       </p>
       <div class="make-btn" @click="emits('onPrint')">现在就打印</div>
+    </div>
+
+    <div v-if="props.state === 'PREVIEW'">
+      <div class="left-title">
+        <span>书名</span>
+      </div>
+      词汇量、使用的翻译、制作时间
     </div>
   </div>
 </template>
@@ -322,7 +329,8 @@ watch(
   &.selecting_file,
   &.splitting,
   &.in_translation,
-  &.done {
+  &.done,
+  &.preview {
     width: 420px;
     padding: 32px;
     background: $bg-200;
@@ -378,13 +386,6 @@ watch(
         }
       }
 
-      .making-title {
-        margin-bottom: 20px;
-        font-size: 18px;
-        font-weight: 600;
-        color: $accent-100;
-      }
-
       .alert {
         padding: 12px;
         margin-bottom: 20px;
@@ -397,15 +398,18 @@ watch(
       }
     }
 
-    .print {
-
-      .print-title {
-        margin-bottom: 20px;
-        font-size: 18px;
-        font-weight: 600;
-        color: $accent-100;
-        text-align: center;
-      }
+    .left-title {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      color: $accent-100;
+    }
+    .center-title {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      color: $accent-100;
+      text-align: center;
     }
   }
 }
