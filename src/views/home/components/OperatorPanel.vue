@@ -63,11 +63,14 @@
 
     <div v-if="['SPLITTING', 'IN_TRANSLATION'].includes(state)" class="making">
       <div class="making-title">
-        <span>正在制作单词书...</span>
+        <span>正在制作你的单词书...</span>
       </div>
-      <div v-if="props.state === 'SPLITTING'" class="progress-info">拆分单词</div>
+      <div class="alert">
+        <p>翻译进度受词典接口限制，可能进度会非常慢，还请耐心等待。</p>
+      </div>
+      <div v-if="props.state === 'SPLITTING'" class="progress-info">正在拆分单词</div>
       <div v-if="props.state === 'IN_TRANSLATION'" class="progress-info">
-        <span>翻译单词和句子</span>
+        <span>正在翻译单词和句子</span>
         <span class="value">{{ translationProgress }} <span class="separator">/</span> {{ neetTranslateNum }}</span>
       </div>
       <div class="progress-bar-group">
@@ -77,9 +80,6 @@
         <div class="progress-bar">
           <div class="progress-bar-inner" :style="{ width: `${translationProgress / neetTranslateNum * 100}%` }" />
         </div>
-      </div>
-      <div class="alert">
-        翻译进度受词典接口限制，可能进度会非常慢，还请耐心等待。
       </div>
     </div>
 
@@ -324,7 +324,7 @@ watch(
   &.in_translation,
   &.done {
     width: 420px;
-    padding: 20px 32px 32px;
+    padding: 32px;
     background: $bg-200;
     border-radius: 20px;
     box-shadow: inset 0 0 0 1px $bg-300, 0 4px 12px -4px $bg-300;
@@ -383,13 +383,17 @@ watch(
         font-size: 18px;
         font-weight: 600;
         color: $accent-100;
-        text-align: center;
       }
 
       .alert {
         padding: 12px;
+        margin-bottom: 20px;
         background: rgba($accent-200, 0.6);
         border-radius: 6px;
+
+        :last-child {
+          margin-bottom: 0;
+        }
       }
     }
 

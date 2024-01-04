@@ -87,6 +87,22 @@ defineExpose({
         color: $accent-100;
       }
     }
+
+    a {
+      color: #171725;
+
+      &:hover {
+        color: $accent-100;
+      }
+
+      &:active {
+        color: rgba($accent-100, 0.7);
+      }
+
+      &:visited {
+        color: #171725;
+      }
+    }
   }
 }
 
