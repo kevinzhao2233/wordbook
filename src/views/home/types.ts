@@ -13,6 +13,7 @@ export interface IOptions {
 }
 
 export interface IBook {
+  id: string;
   name: string;
   createTime: number;
   useDictionary: string;

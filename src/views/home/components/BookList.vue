@@ -10,6 +10,7 @@
           :key="book.name"
           :book="book"
           @click="emits('on-preview', book)"
+          @delete="deleteMyBook(book)"
         />
       </div>
     </template>
@@ -42,16 +43,23 @@ const myBooks = shallowRef<IBook[]>([]);
 
 const getMyBooks = async () => {
   const bookKeys = await window.bookStore.keys();
+  const tmpBooks: IBook[] = [];
   for await (const key of bookKeys) {
     const book: IBook | null = await window.bookStore.getItem(key);
     if (book) {
-      myBooks.value.push(book);
+      tmpBooks.push(book);
     }
   }
-  triggerRef(myBooks);
+  myBooks.value = tmpBooks;
 };
 
 getMyBooks();
+
+const deleteMyBook = (book: IBook) => {
+  window.bookStore.removeItem(book.id).then(() => {
+    getMyBooks();
+  });
+};
 
 const publicBooks = ref<IBook[]>([]);
 </script>

@@ -51,6 +51,7 @@ import {
   nextTick, ref, watch, shallowRef, triggerRef,
 } from 'vue';
 import dayjs from 'dayjs';
+import { nanoid } from 'nanoid';
 import { IWordsResult, translateWords } from '@/core/translate';
 import { FileState, IBook } from '../types';
 import { exampleWordList } from '@/assets/exampleWordList';
@@ -156,7 +157,9 @@ const sortWitchLetter = () => {
 
 const saveBook = () => {
   if (props.state === 'DONE') {
+    const id = nanoid(8);
     const book: IBook = {
+      id,
       name: `我的单词书 ${dayjs().format('YYYY-MM-DD HH:mm:ss')}`,
       createTime: Date.now(),
       useDictionary: props.useDictionary,
@@ -164,7 +167,7 @@ const saveBook = () => {
       wordList: wordList.value,
       _version: 1,
     };
-    window.bookStore.setItem(String(Date.now()), book);
+    window.bookStore.setItem(id, book);
   }
 };
 </script>
