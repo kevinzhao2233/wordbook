@@ -4,7 +4,13 @@
 
     <div v-if="props.state === 'SELECTING_FILE'" class="selecting-file">
       <div class="title">
-        <span>选择的文件</span>
+        <div class="title-content">
+          <a-tooltip>
+            <template #title>返回首页</template>
+            <Home class="home-icon" @click="goHome" />
+          </a-tooltip>
+          选择的文件
+        </div>
         <a-dropdown>
           <div class="small-add-btn">继续添加</div>
           <template #overlay>
@@ -62,8 +68,14 @@
     </div>
 
     <div v-if="['SPLITTING', 'IN_TRANSLATION'].includes(state)" class="making">
-      <div class="left-title">
-        <span>正在制作你的单词书...</span>
+      <div class="title">
+        <div class="title-content">
+          <a-tooltip>
+            <template #title>返回首页</template>
+            <Home class="home-icon" @click="goHome" />
+          </a-tooltip>
+          正在制作你的单词书...
+        </div>
       </div>
       <div class="alert">
         <p>翻译进度受词典接口限制，可能进度会非常慢，还请耐心等待。</p>
@@ -84,8 +96,14 @@
     </div>
 
     <div v-if="props.state === 'DONE'" class="print">
-      <div class="center-title">
-        <span>你的单词书已经生成喽</span>
+      <div class="title">
+        <div class="title-content">
+          <a-tooltip>
+            <template #title>返回首页</template>
+            <Home class="home-icon" @click="goHome" />
+          </a-tooltip>
+          你的单词书已经生成喽
+        </div>
       </div>
       <p class="print-desc">
         你现在可以点击下面的打印按钮打印单词书。
@@ -106,7 +124,7 @@
 </template>
 <script setup lang="ts">
 import {
-  CloseSmall, FileText, Down,
+  CloseSmall, FileText, Down, Home,
 } from '@icon-park/vue-next';
 import { useFileDialog } from '@vueuse/core';
 import { ref, watch, toRaw } from 'vue';
@@ -200,23 +218,45 @@ watch(
     }
   },
 );
+
+const goHome = () => {
+  window.location.href = '/';
+};
 </script>
 
 <style lang="scss" scoped>
 .operator-container {
   transition: all 0.3s;
 
-  .selecting-file {
-    .title {
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 34px;
+    margin-bottom: 12px;
+
+    .title-content {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1;
 
-      span {
-        font-size: 18px;
-        font-weight: 600;
+      .home-icon {
+        margin-right: 6px;
+        margin-bottom: -1px;
+        color: $text-200;
+        cursor: pointer;
+
+        &:hover {
+          color: $text-100;
+        }
       }
+    }
+  }
+
+  .selecting-file {
+    .title {
 
       .small-add-btn {
         display: flex;
@@ -388,7 +428,7 @@ watch(
 
       .alert {
         padding: 12px;
-        margin-bottom: 20px;
+        margin: 12px 0 20px;
         background: rgba($accent-200, 0.6);
         border-radius: 6px;
 
@@ -396,20 +436,6 @@ watch(
           margin-bottom: 0;
         }
       }
-    }
-
-    .left-title {
-      margin-bottom: 20px;
-      font-size: 18px;
-      font-weight: 600;
-      color: $accent-100;
-    }
-    .center-title {
-      margin-bottom: 20px;
-      font-size: 18px;
-      font-weight: 600;
-      color: $accent-100;
-      text-align: center;
     }
   }
 }

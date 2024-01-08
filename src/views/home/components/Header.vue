@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="logo">wordbook</div>
+    <div class="logo" @click="goHome">wordbook</div>
     <div class="extra">
 
       <a href="https://github.com/kevinzhao2233/wordbook" target="_blank">
@@ -46,6 +46,10 @@ const setOpenSettings = (open: boolean) => {
   openSettings.value = open;
 };
 
+const goHome = () => {
+  window.location.href = '/';
+};
+
 defineExpose({
   setOpenSettings,
 });
@@ -69,6 +73,7 @@ defineExpose({
     font-weight: 600;
     color: $text-200;
     letter-spacing: 1px;
+    cursor: pointer;
     background: linear-gradient(315deg, $primary-200 25%, $accent-100);
     background-clip: text;
     -webkit-text-fill-color: transparent;

@@ -17,7 +17,7 @@ export const translateByYoudao = async (
   resultCb: (result: IWordsResult) => void,
   progressCb: (progress: number) => void,
 ) => {
-  const interval = 2000000;
+  const interval = 200;
   if (isWord) {
     let idx = 0;
 
