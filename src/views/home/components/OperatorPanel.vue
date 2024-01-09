@@ -105,6 +105,10 @@
           你的单词书已经生成喽
         </div>
       </div>
+      <div class="description">
+        <div class="label">单词量：</div>
+        <div class="value">{{ props.neetTranslateNum / 2 }}</div>
+      </div>
       <p class="print-desc">
         你现在可以点击下面的打印按钮打印单词书。
       </p>
