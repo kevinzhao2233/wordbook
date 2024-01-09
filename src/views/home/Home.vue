@@ -9,6 +9,7 @@
       :state="state"
       :neet-translate-num="neetTranslateNum"
       :translation-progress="translationProgress"
+      :preview-book="previewBook"
       @on-change-file="onChangeFile"
       @on-start="startMakeBook"
       @on-print="handlePrint"
@@ -50,6 +51,11 @@ const { data, post, terminate } = useWebWorker(workerUrl);
  * 页面状态
  */
 const state = ref<FileState>('NO_FILE');
+
+/**
+ * 上一次状态，主要是为了打印后返回状态用
+ */
+const prevState = ref<FileState>('NO_FILE');
 
 /**
  * 选择的文件列表
@@ -150,6 +156,7 @@ const onTranslationProgress = (progress: number) => {
  * 执行打印，弹出打印窗口
  */
 const handlePrint = () => {
+  prevState.value = state.value;
   state.value = 'PRINT';
   nextTick(() => {
     window.print();
@@ -161,15 +168,17 @@ const handlePrint = () => {
  */
 window.onafterprint = () => {
   if (state.value === 'PRINT') {
-    state.value = 'DONE';
+    state.value = prevState.value;
   }
 };
 
+const previewBook = ref<IBook>();
 /**
  * 预览单词书
  */
 const onPreviewBook = (book: IBook) => {
   state.value = 'PREVIEW';
+  previewBook.value = book;
   rawWordList.value = book.wordList;
 };
 </script>

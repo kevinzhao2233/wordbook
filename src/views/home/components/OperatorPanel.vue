@@ -7,7 +7,7 @@
         <div class="title-content">
           <a-tooltip>
             <template #title>返回首页</template>
-            <Home class="home-icon" @click="goHome" />
+            <HomeTwo class="home-icon" @click="goHome" />
           </a-tooltip>
           选择的文件
         </div>
@@ -72,7 +72,7 @@
         <div class="title-content">
           <a-tooltip>
             <template #title>返回首页</template>
-            <Home class="home-icon" @click="goHome" />
+            <HomeTwo class="home-icon" @click="goHome" />
           </a-tooltip>
           正在制作你的单词书...
         </div>
@@ -100,7 +100,7 @@
         <div class="title-content">
           <a-tooltip>
             <template #title>返回首页</template>
-            <Home class="home-icon" @click="goHome" />
+            <HomeTwo class="home-icon" @click="goHome" />
           </a-tooltip>
           你的单词书已经生成喽
         </div>
@@ -115,20 +115,42 @@
     </div>
 
     <div v-if="props.state === 'PREVIEW'">
-      <div class="left-title">
-        <span>书名</span>
+      <div class="title">
+        <div class="title-content">
+          <a-tooltip>
+            <template #title>返回首页</template>
+            <HomeTwo class="home-icon" @click="goHome" />
+          </a-tooltip>
+          {{ previewBook?.name }}
+        </div>
       </div>
-      词汇量、使用的翻译、制作时间
+
+      <div class="description">
+        <div class="label">单词量：</div>
+        <div class="value">{{ props.previewBook?.wordCount }}</div>
+      </div>
+      <div class="description">
+        <div class="label">使用的翻译：</div>
+        <div class="value">{{ dictName }}</div>
+      </div>
+      <div class="description">
+        <div class="label">制作时间：</div>
+        <div class="value">{{ dayjs(props.previewBook?.createTime).format('YYYY-MM-DD HH:mm') }}</div>
+      </div>
+      <div class="make-btn" @click="emits('onPrint')">打印这个单词本</div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import {
-  CloseSmall, FileText, Down, Home,
+  CloseSmall, FileText, Down, HomeTwo,
 } from '@icon-park/vue-next';
 import { useFileDialog } from '@vueuse/core';
-import { ref, watch, toRaw } from 'vue';
-import { FileState, IOptions } from '../types';
+import {
+  ref, watch, toRaw, computed,
+} from 'vue';
+import dayjs from 'dayjs';
+import { FileState, IBook, IOptions } from '../types';
 import { isRepeatFile, arrayToFileList } from '@/utils/helper';
 import SelectFile from './SelectFile.vue';
 import { dictionarys, chooseSentenceWays } from '../consts';
@@ -137,8 +159,9 @@ interface IProps {
   state: FileState;
   translationProgress: number;
   neetTranslateNum: number;
+  previewBook?: IBook;
 }
-const props = withDefaults(defineProps<IProps>(), { });
+const props = withDefaults(defineProps<IProps>(), { previewBook: undefined });
 
 interface IEmits {
   (e: 'onChangeFile', fileList: FileList): void;
@@ -218,6 +241,11 @@ watch(
     }
   },
 );
+
+const dictName = computed(() => {
+  const name = dictionarys.find((item) => item.value === props.previewBook?.useDictionary)?.label;
+  return name || props.previewBook?.useDictionary;
+});
 
 const goHome = () => {
   window.location.href = '/';
@@ -348,6 +376,20 @@ const goHome = () => {
         color: $text-300;
         vertical-align: middle;
       }
+    }
+  }
+
+  .description {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    .label {
+      color: rgba($text-200, 0.6);
+    }
+
+    .value {
+      color: $text-200;
     }
   }
 

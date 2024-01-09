@@ -2,6 +2,7 @@
   <div class="book">
     <div class="book-decor" />
     <div class="name">{{ book.name }}</div>
+    <div class="create-time">{{ dayjs(book.createTime).format('YYYY-MM-DD HH:mm') }}</div>
     <div v-if="dictName" class="translate-by-tag">{{ dictName }}</div>
     <div class="operation-bar" @click.stop="() => {}">
       <a-tooltip>
@@ -17,6 +18,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import dayjs from 'dayjs';
 import { DeleteOne } from '@icon-park/vue-next';
 import { computed } from 'vue';
 import { IBook } from '../types';
@@ -66,30 +68,46 @@ const dictName = computed(() => {
 
   .name {
     font-size: 18px;
+    font-weight: 500;
+    color: $accent-100;
     text-align: center;
+  }
+
+  .create-time {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    height: 32px;
+    padding-left: 16px;
+    font-size: 12px;
+    color: $text-300;
   }
 
   .translate-by-tag {
     position: absolute;
-    top: 20px;
+    top: 0;
     right: 0;
     padding: 1px 8px;
     font-size: 12px;
     color: #ffffff;
     background-color: $primary-200;
-    border-radius: 12px 0 0 12px;
+    border-radius: 0 0 0 12px;
   }
 
   .operation-bar {
     position: absolute;
+    top: 30px;
     right: 0;
-    bottom: 20px;
     left: 0;
     display: flex;
     align-items: center;
     justify-content: end;
     height: 32px;
     padding: 0 8px;
+    color: $text-300;
     cursor: default;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;

@@ -160,7 +160,7 @@ const saveBook = () => {
     const id = nanoid(8);
     const book: IBook = {
       id,
-      name: `我的单词书 ${dayjs().format('YYYY-MM-DD HH:mm:ss')}`,
+      name: `我的单词书 ${dayjs().format('YYYY-MM-DD HH:mm')}`,
       createTime: Date.now(),
       useDictionary: props.useDictionary,
       wordCount: wordList.value.length,
