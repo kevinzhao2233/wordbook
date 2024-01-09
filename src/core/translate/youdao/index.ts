@@ -1,15 +1,19 @@
 import { customAlphabet } from 'nanoid';
 import { SHA256, enc } from 'crypto-js';
 import axios from 'axios';
-import { IWord } from '../wordFrequencySort';
+import { message, notification } from 'ant-design-vue';
+import { IWord } from '../../wordFrequencySort';
 // eslint-disable-next-line import/no-duplicates
-import { AxiosJsonp } from '../../utils/axios';
+import { AxiosJsonp } from '@/utils/axios';
 // eslint-disable-next-line import/no-duplicates
-import '../../utils/axios';
-import { ITranslateResult, IWordsResult } from '.';
+import '@/utils/axios';
+import { ITranslateResult, IWordsResult } from '..';
 import { simulateSetInterval } from '@/utils/helper';
+import { errorCode } from './config';
 
 const nanoid = customAlphabet('1234567890abcdef', 32);
+
+const messageKey = 'youdaoMessageKey';
 
 export const translateByYoudao = async (
   words: IWord[],
@@ -51,6 +55,13 @@ export const translateByYoudao = async (
           }
           progressCb(idx);
         } else {
+          notification.error({
+            key: messageKey,
+            duration: 0,
+            placement: 'bottom',
+            message: '有道：请求错误',
+            description: errorCode[res.errorCode] || '请求错误，请到 GitHub 提 issue',
+          });
           console.warn(res, JSON.stringify(res));
           stop();
         }
@@ -100,6 +111,13 @@ export const translateByYoudao = async (
               }
               progressCb(idx);
             } else {
+              notification.error({
+                key: messageKey,
+                duration: 0,
+                placement: 'bottom',
+                message: '有道：请求错误',
+                description: errorCode[res.errorCode] || '请求错误，请到 GitHub 提 issue',
+              });
               console.warn(res, JSON.stringify(res));
               stop();
             }

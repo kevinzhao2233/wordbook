@@ -1,6 +1,6 @@
 import { Merge } from 'type-fest';
 import { IWord } from '../wordFrequencySort';
-import { translateByYoudao } from './youdao';
+import { translateByYoudao } from './youdao/index';
 
 export interface ITranslateResult {
   originQuery?: string;
