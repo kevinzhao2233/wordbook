@@ -1,7 +1,7 @@
 import { customAlphabet } from 'nanoid';
 import { SHA256, enc } from 'crypto-js';
 import axios from 'axios';
-import { message, notification } from 'ant-design-vue';
+import { notification } from 'ant-design-vue';
 import { IWord } from '../../wordFrequencySort';
 // eslint-disable-next-line import/no-duplicates
 import { AxiosJsonp } from '@/utils/axios';
@@ -10,15 +10,28 @@ import '@/utils/axios';
 import { ITranslateResult, IWordsResult } from '..';
 import { simulateSetInterval } from '@/utils/helper';
 import { errorCode } from './config';
+import { IErr } from '@/views/home/types';
 
 const nanoid = customAlphabet('1234567890abcdef', 32);
 
 const messageKey = 'youdaoMessageKey';
 
+const popupNotification = (code: string) => {
+  const description = `${errorCode[code] || '请求错误，请到 GitHub 提 issue'}。不要担心，目前翻译的部分都已经保存到了你的电脑，后续可以继续翻译。`;
+  notification.error({
+    key: messageKey,
+    duration: 0,
+    placement: 'bottom',
+    message: '有道：Api 请求错误',
+    description,
+  });
+};
+
 export const translateByYoudao = async (
   words: IWord[],
   isWord: boolean,
   resultCb: (result: IWordsResult) => void,
+  errorCb: (error: IErr, semiFinishedResult: IWordsResult) => void,
   progressCb: (progress: number) => void,
 ) => {
   const interval = 200;
@@ -55,14 +68,9 @@ export const translateByYoudao = async (
           }
           progressCb(idx);
         } else {
-          notification.error({
-            key: messageKey,
-            duration: 0,
-            placement: 'bottom',
-            message: '有道：请求错误',
-            description: errorCode[res.errorCode] || '请求错误，请到 GitHub 提 issue',
-          });
+          popupNotification(res.errorCode);
           console.warn(res, JSON.stringify(res));
+          errorCb({ message: '有道：Api 请求错误' }, words);
           stop();
         }
         if (idx >= wordsLength) {
@@ -111,14 +119,9 @@ export const translateByYoudao = async (
               }
               progressCb(idx);
             } else {
-              notification.error({
-                key: messageKey,
-                duration: 0,
-                placement: 'bottom',
-                message: '有道：请求错误',
-                description: errorCode[res.errorCode] || '请求错误，请到 GitHub 提 issue',
-              });
+              popupNotification(res.errorCode);
               console.warn(res, JSON.stringify(res));
+              errorCb({ message: '有道：Api 请求错误' }, words);
               stop();
             }
             if (idx >= wordsLength) {

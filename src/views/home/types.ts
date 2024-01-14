@@ -19,5 +19,11 @@ export interface IBook {
   useDictionary: string;
   wordCount: number;
   wordList: any;
+  isDraft?: boolean;
   _version: number;
+}
+
+export interface IErr {
+  code?: number;
+  message?: string;
 }

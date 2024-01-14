@@ -119,6 +119,9 @@ const startTrans = async (copyWordList: IWordsResult) => {
     nextTick(() => {
       sortWitchLetter();
     });
+  }, (err, semiFinishedResult) => {
+    wordList.value = semiFinishedResult;
+    saveBook(true);
   }, (progress) => {
     emits('onTranslationProgress', progress);
   });
@@ -155,20 +158,19 @@ const sortWitchLetter = () => {
   });
 };
 
-const saveBook = () => {
-  if (props.state === 'DONE') {
-    const id = nanoid(8);
-    const book: IBook = {
-      id,
-      name: `我的单词书 ${dayjs().format('YYYY-MM-DD HH:mm')}`,
-      createTime: Date.now(),
-      useDictionary: props.useDictionary,
-      wordCount: wordList.value.length,
-      wordList: wordList.value,
-      _version: 1,
-    };
-    window.bookStore.setItem(id, book);
-  }
+const saveBook = (isDraft?: boolean) => {
+  const id = nanoid(8);
+  const book: IBook = {
+    id,
+    isDraft,
+    name: `我的单词书 ${dayjs().format('YYYY-MM-DD HH:mm')}`,
+    createTime: Date.now(),
+    useDictionary: props.useDictionary,
+    wordCount: wordList.value.length,
+    wordList: wordList.value,
+    _version: 1,
+  };
+  window.bookStore.setItem(id, book);
 };
 </script>
 

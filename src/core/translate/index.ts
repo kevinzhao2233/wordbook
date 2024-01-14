@@ -1,6 +1,7 @@
 import { Merge } from 'type-fest';
 import { IWord } from '../wordFrequencySort';
 import { translateByYoudao } from './youdao/index';
+import { IErr } from '@/views/home/types';
 
 export interface ITranslateResult {
   originQuery?: string;
@@ -56,6 +57,7 @@ export const translateWords = async (
   words: IWord[],
   useDictionary: string,
   resultCb: (result: IWordsResult) => void,
+  errorCb: (error: IErr, result: IWordsResult) => void,
   progressCb: (progress: number) => void,
 ) => {
   const localWordsResult = await translateByLocal(words);
@@ -76,7 +78,7 @@ export const translateWords = async (
         }
       }
       resultCb(localWordsResult);
-    }, (progress) => {
+    }, errorCb, (progress) => {
       progressCb(localWordsResult.length + progress);
     });
   };
@@ -94,9 +96,7 @@ export const translateWords = async (
           }
         }
         translateSentence();
-      }, (progress) => {
-        progressCb(progress);
-      });
+      }, errorCb, progressCb);
     }
   } else {
     // 如果所有单词都从本地翻译了，则直接翻译句子

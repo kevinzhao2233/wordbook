@@ -3,7 +3,7 @@
     <div class="book-decor" />
     <div class="name">{{ book.name }}</div>
     <div class="create-time">{{ dayjs(book.createTime).format('YYYY-MM-DD HH:mm') }}</div>
-    <div v-if="dictName" class="translate-by-tag">{{ dictName }}</div>
+    <div v-if="dictName" class="translate-by-tag">{{book.isDraft ? '未完成 | ' : '' }}{{ dictName }}</div>
     <div class="operation-bar" @click.stop="() => {}">
       <a-tooltip>
         <template #title>删除</template>
