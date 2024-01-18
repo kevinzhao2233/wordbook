@@ -1,9 +1,9 @@
 <template>
-  <div class="book">
+  <div class="book" :style="{backgroundImage: 'url(' + svgSrc + ')'}">
     <div class="book-decor" />
     <div class="name">{{ book.name }}</div>
-    <div class="create-time">{{ dayjs(book.createTime).format('YYYY-MM-DD HH:mm') }}</div>
-    <div v-if="dictName" class="translate-by-tag">{{book.isDraft ? '未完成 | ' : '' }}{{ dictName }}</div>
+    <div class="create-time">{{ humanTime(book.createTime) }}</div>
+    <div v-if="dictName" class="translate-by-tag">{{ book.isDraft ? '未完成 | ' : '' }}{{ dictName }}</div>
     <div class="operation-bar" @click.stop="() => {}">
       <a-tooltip>
         <template #title>删除</template>
@@ -18,11 +18,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import dayjs from 'dayjs';
 import { DeleteOne } from '@icon-park/vue-next';
 import { computed } from 'vue';
 import { IBook } from '../types';
 import { dictionarys } from '../consts';
+import { humanTime } from '@/utils/helper';
+import { blobSvg } from '@/utils/blobSvg';
 
 interface IProps {
   book: IBook;
@@ -41,6 +42,10 @@ const dictName = computed(() => {
   return name || props.book.useDictionary;
 });
 
+const svg = blobSvg();
+const svgSrc = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+console.log(svg);
+
 </script>
 
 <style lang="scss" scoped>
@@ -54,6 +59,8 @@ const dictName = computed(() => {
   overflow: hidden;
   cursor: pointer;
   background: $bg-200;
+  background-repeat: no-repeat;
+  background-position: bottom -50px right -50px;
   border-radius: 12px;
   transition: transform 0.3s ease-in-out;
 
@@ -63,7 +70,6 @@ const dictName = computed(() => {
     left: 0;
     width: 16px;
     height: 100%;
-    background: linear-gradient(90deg, $bg-200 20%, $accent-200);
   }
 
   .name {
@@ -79,7 +85,7 @@ const dictName = computed(() => {
     bottom: 0;
     left: 0;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     height: 32px;
     padding-left: 16px;
     font-size: 12px;

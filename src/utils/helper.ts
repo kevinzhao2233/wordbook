@@ -1,4 +1,18 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import Tokenizer from 'wink-tokenizer';
+
+/**
+ * 将时间转换为人性化的描述，比如 10分钟前、1小时前、几秒前
+ * @param targetTime 目标时间
+ * @returns 人性化的时间描述
+ */
+export const humanTime = (targetTime: string | number | dayjs.Dayjs | Date | null | undefined): string => {
+  dayjs.extend(relativeTime);
+  const now = dayjs();
+  const target = dayjs(targetTime);
+  return now.to(target);
+};
 
 /*
  * 生成文件唯一id

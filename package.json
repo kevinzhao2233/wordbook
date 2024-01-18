@@ -19,6 +19,7 @@
     "ant-design-vue": "^4.1.0",
     "axios": "^1.6.5",
     "b-pretty-log": "0.2.2",
+    "blobs": "2.3.0-beta.2",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
     "localforage": "^1.10.0",
