@@ -47,7 +47,7 @@ const getMyBooks = async () => {
   for await (const key of bookKeys) {
     const book: IBook | null = await window.bookStore.getItem(key);
     if (book) {
-      tmpBooks.push(book);
+      tmpBooks.unshift(book);
     }
   }
   myBooks.value = tmpBooks;
