@@ -1,5 +1,5 @@
 <template>
-  <div class="book" :style="{backgroundImage: 'url(' + svgSrc + ')'}">
+  <div class="book" :style="{backgroundImage: 'url(' + (book.coverBlob || svgSrc) + ')'}">
     <div class="book-decor" />
     <div class="name">{{ book.name }}</div>
     <div class="create-time">{{ humanTime(book.createTime) }}</div>
@@ -44,7 +44,6 @@ const dictName = computed(() => {
 
 const svg = blobSvg();
 const svgSrc = `data:image/svg+xml,${encodeURIComponent(svg)}`;
-console.log(svg);
 
 </script>
 

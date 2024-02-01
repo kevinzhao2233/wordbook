@@ -55,6 +55,7 @@ import { nanoid } from 'nanoid';
 import { IWordsResult, translateWords } from '@/core/translate';
 import { FileState, IBook } from '../types';
 import { exampleWordList } from '@/assets/exampleWordList';
+import { blobSvg } from '@/utils/blobSvg';
 
 interface IProps {
   rawWordList: IWordsResult;
@@ -158,8 +159,12 @@ const sortWitchLetter = () => {
   });
 };
 
+const isSaved = ref(false);
 const saveBook = (isDraft?: boolean) => {
-  const id = nanoid(8);
+  if (isSaved.value) return;
+  const id = `${Date.now()}_${nanoid(8)}`;
+  const svg = blobSvg();
+  const svgSrc = `data:image/svg+xml,${encodeURIComponent(svg)}`;
   const book: IBook = {
     id,
     isDraft,
@@ -168,8 +173,10 @@ const saveBook = (isDraft?: boolean) => {
     useDictionary: props.useDictionary,
     wordCount: wordList.value.length,
     wordList: wordList.value,
+    coverBlob: svgSrc,
     _version: 1,
   };
+  isSaved.value = true;
   window.bookStore.setItem(id, book);
 };
 </script>

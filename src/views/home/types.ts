@@ -19,6 +19,7 @@ export interface IBook {
   useDictionary: string;
   wordCount: number;
   wordList: any;
+  coverBlob?: string;
   isDraft?: boolean;
   _version: number;
 }
