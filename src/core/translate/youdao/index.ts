@@ -17,12 +17,12 @@ const nanoid = customAlphabet('1234567890abcdef', 32);
 const messageKey = 'youdaoMessageKey';
 
 const popupNotification = (code: string) => {
-  const description = `${errorCode[code] || '请求错误，请到 GitHub 提 issue'}。不要担心，目前翻译的部分都已经保存到了你的电脑，后续可以继续翻译。`;
+  const description = `Api 请求错误：${errorCode[code] || '请求错误，请到 GitHub 提 issue'}。不要担心，目前翻译的部分都已经保存到了你的电脑，后续可以继续翻译。`;
   notification.error({
     key: messageKey,
     duration: 0,
     placement: 'bottom',
-    message: '有道：Api 请求错误',
+    message: `有道：${errorCode[code] || 'Api 请求错误'}`,
     description,
   });
 };
