@@ -7,7 +7,7 @@
       <div class="list">
         <Book
           v-for="book in myBooks"
-          :key="book.name"
+          :key="book.id"
           :book="book"
           @click="emits('on-preview', book)"
           @delete="deleteMyBook(book)"
